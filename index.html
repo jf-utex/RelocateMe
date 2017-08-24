@@ -5,16 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    
     <title>RelocateMe</title>
-</head>
-<body>
-    
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div class = "container">
+
+        <div class = "container" id = "jumbotronContainer">
+            <div class="jumbotron">
+                <h1>RelocateMe</h1>
+                <p>Enter the employer and city state that you are looking for and we will show you housing, school district, and ammenities in the area.</p>
+            </div>
+        </div>
+
+        <div class = "container" id = "formContainer">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="inputName">Company Name</label>
+                    <input type="text" class="form-control" id="inputName" placeholder="Enter Company Name">
+                </div>
+                <div class="form-group">
+                    <label for="inputCityState">City, ST</label>
+                    <input type="text" class="form-control" id="inputCityState" placeholder="City, ST">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+
+        <div class = "container" id = "companyListContainer">
+            <ul class="list-group">
+            <!-- // code for companyListItem below-->
+            <!-- <li class="list-group-item" id = "companyListItem">example</li> -->
+            
+            </ul>
+        </div>
+
+        <div class = "container" id = "mapViewContainer">
+            <div class="embed-responsive embed-responsive-16by9">
+                 <iframe class="embed-responsive-item" src="http://via.placeholder.com/400x400"> 
+<!-- alt = http://via.placeholder.com/4x3 -->
+                </iframe>
+            </div>
+        </div>
+            
+        <div class = "container" id = "housingListContainer">
+            <ul class="list-group">
+            <!-- // code for housingListItem below     -->
+            <!-- <li class="list-group-item" id = "housingListItem">example</li> -->
+            
+            </ul>
+        </div>
     
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    </div>
+    <script type="text/javascript" src = "assets/javascript/app.js">
+    </script>
 </body>
 </html>
