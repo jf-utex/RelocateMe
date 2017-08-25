@@ -4,9 +4,9 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+
     <title>RelocateMe San Francisco</title>
-    
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     
     <!-- Latest compiled and minified CSS -->
@@ -14,66 +14,54 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">  <!--personal styling-->
-         
-        
+    
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">  <!--personal styling-->    
 </head>
 <body>
     <div class = "container">
-
         <div class = "container text-right" id = "jumbotronContainer">
             <div class="jumbotron">
                 <h1>RelocateMe San Fransisco</h1>
                 <br>
                 <br>
-            </div>
+            </div> <!--close div for class Jumbotron-->
+        </div> <!--close div class container and id jumBotron-->
+    </div> <!--close div for class container -->
+    <div class = "container">  <!--Container for Google HTML-->
+      <div class="pac-card" id="pac-card">
+        <div>
+          <div id="title">
+            Autocomplete search
+          </div>
+          <div id="type-selector" class="pac-controls">
+            <input type="radio" name="type" id="changetype-all" checked="checked">
+            <label for="changetype-all">All</label>
+  
+            <input type="radio" name="type" id="changetype-establishment">
+            <label for="changetype-establishment">Establishments</label>
+  
+            <input type="radio" name="type" id="changetype-address">
+            <label for="changetype-address">Addresses</label>
+  
+            <input type="radio" name="type" id="changetype-geocode">
+            <label for="changetype-geocode">Geocodes</label>
+          </div>
+          <div id="strict-bounds-selector" class="pac-controls">
+            <input type="checkbox" id="use-strict-bounds" value="">
+            <label for="use-strict-bounds">Strict Bounds</label>
+          </div>
         </div>
-
-        <div class = "container" id = "companyListContainer">
-            <ul class="list-group">
-            <!-- // code for companyListItem below-->
-            <!-- <li class="list-group-item" id = "companyListItem">example</li> -->
-            </ul>
+        <div id="pac-container">
+          <input id="pac-input" type="text" placeholder="Enter a location">
         </div>
-
-        <!-- Google map and autocomplete -->
-        
-                <body>
-                  <div class="pac-card" id="pac-card">
-                    <div>
-                      <div id="title">
-                        Autocomplete search
-                      </div>
-                      <div id="type-selector" class="pac-controls">
-                        <input type="radio" name="type" id="changetype-all" checked="checked">
-                        <label for="changetype-all">All</label>
-              
-                        <input type="radio" name="type" id="changetype-establishment">
-                        <label for="changetype-establishment">Establishments</label>
-              
-                        <input type="radio" name="type" id="changetype-address">
-                        <label for="changetype-address">Addresses</label>
-              
-                        <input type="radio" name="type" id="changetype-geocode">
-                        <label for="changetype-geocode">Geocodes</label>
-                      </div>
-                      <div id="strict-bounds-selector" class="pac-controls">
-                        <input type="checkbox" id="use-strict-bounds" value="">
-                        <label for="use-strict-bounds">Strict Bounds</label>
-                      </div>
-                    </div>
-                    <div id="pac-container">
-                      <input id="pac-input" type="text"
-                          placeholder="Enter a location">
-                    </div>
-                  </div>
-                  <div id="map"></div>
-                  <div id="infowindow-content">
-                    <img src="" width="16" height="16" id="place-icon">
-                    <span id="place-name"  class="title"></span><br>
-                    <span id="place-address"></span>
-                  </div>
-                  
+      </div>
+      <div id="map"></div>
+      <div id="infowindow-content">
+        <img src="" width="16" height="16" id="place-icon">
+        <span id="place-name"  class="title"></span><br>
+        <span id="place-address"></span>
+      </div>
+    </div> <!--close div for class container  to hold Google HTML-->  
          <!-- Panel for PlaceILive Data    -->
          <div class = "container">
          <div class="panel panel-primary"> <!--to hold train schedule output-->
@@ -91,10 +79,9 @@
                     <tbody>
                     </tbody>
                 </table> <!--closes primary panel for train scheduel output-->
-
             </div> 
         </div>  <!--close panel-primary to hold return-->
-         </div>
+        </div>
         </div>
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsa_wxn57WwF3Wr07LCs9jmoCCBvKlRaU&libraries=places&callback=initMap"
@@ -104,5 +91,4 @@
 </body>
 </html>
 
-<tr>
                             

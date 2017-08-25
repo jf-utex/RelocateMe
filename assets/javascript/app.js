@@ -30,6 +30,8 @@ function initMap() {
   //   anchorPoint: new google.maps.Point(0, -29)
   // });
 
+  //Google map and autocomplete
+
   autocomplete.addListener('place_changed', function() {
     // infowindow.close();
     // marker.setVisible(false);
