@@ -1,100 +1,88 @@
 
-//grabs google response and parses string into searchable components for the queryURL
-// var googleResponse = parseString {
-// 	streetNumber: 0,
-// 	streetAddress: streetAddress,
-// 	city: city,
-// 	state: state,
-// 	zip: zip,
-	
-// }
-// // ajax call for API
-// $.ajax({
-//    url: queryURL,
-//     method: "GET"
-// }).done(function(response) {
-
-// $(".panel-body").on("click", ".submit", function() {
-//  inputName = $(this).attr("data-name");
-//        queryURL="https:www.zillow.com/webservice/GetSearchResults.htm?zws-id=X1-ZWz1fyhgwn6qyz_8fetn&address=" + streetNumber + streetAddress + address2 + "&citystatezip=" + city + "%2C" + state + zip;
-//         gethouse();
-//        console.log(this).attr("data-name");
-
-// });
-// // Initial array of houses pulled from Zillow after google address pull
-// var latLong = ("");
-
-// loop (i=0; i<house.length; i++);
-// // results append table;
-// $("tbody").append("<tr><td>" + streetNumber + "</td><td>" + streetAddress + "</td><td>" + address2 + "</td><td>" + streetAddress + "</td><td>" + city + "</td><td>" + state + "</td><td>" + state + "</td></tr>");
-
-
-
-
+// This example requires the Places library. Include the libraries=places
+// parameter when you first load the API. For example:
+// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 2,
-      center: new google.maps.LatLng(2.8,-187.3),
-      mapTypeId: 'terrain'
-    });
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -33.8688, lng: 151.2195},
+    zoom: 13
+  });
+  //var card = document.getElementById('pac-card');
+  var input = document.getElementById('pac-input');
+  // var types = document.getElementById('type-selector');
+  // var strictBounds = document.getElementById('strict-bounds-selector');
 
-    // Create a <script> tag and set the USGS URL as the source.
-    var script = document.createElement('script');
-    // This example uses a local copy of the GeoJSON stored at
-    // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-    script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
-    document.getElementsByTagName('head')[0].appendChild(script);
-  }
+  //map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
+  var autocomplete = new google.maps.places.Autocomplete(input);
 
-//   // Loop through the results array and place a marker for each
-//   // set of coordinates.
-//   window.eqfeed_callback = function(results) {
-//     for (var i = 0; i < results.features.length; i++) {
-//       var coords = results.features[i].geometry.coordinates;
-//       var latLng = new google.maps.LatLng(coords[1],coords[0]);
-//       var marker = new google.maps.Marker({
-//         position: latLng,
-//         map: map
-//       });
-//     }
+  // Bind the map's bounds (viewport) property to the autocomplete object,
+  // so that the autocomplete requests use the current map bounds for the
+  // bounds option in the request.
+  //autocomplete.bindTo('bounds', map);
 
-// google.maps.places.Autocomplete
+  // var infowindow = new google.maps.InfoWindow();
+  // var infowindowContent = document.getElementById('infowindow-content');
+  // infowindow.setContent(infowindowContent);
+  // var marker = new google.maps.Marker({
+  //   map: map,
+  //   anchorPoint: new google.maps.Point(0, -29)
+  // });
 
+  autocomplete.addListener('place_changed', function() {
+    // infowindow.close();
+    // marker.setVisible(false);
+    var place = autocomplete.getPlace();
+    // if (!place.geometry) {
+    //   // User entered the name of a Place that was not suggested and
+    //   // pressed the Enter key, or the Place Details request failed.
+    //   window.alert("No details available for input: '" + place.name + "'");
+    //   return;
+    // }
 
-// var mapOptions = {
-//     center: new google.maps.LatLng(37.7831,-122.4039),
-//     zoom: 12,
-//     mapTypeId: google.maps.MapTypeId.ROADMAP
-// };
+    // If the place has a geometry, then present it on a map.
+    // if (place.geometry.viewport) {
+    //   map.fitBounds(place.geometry.viewport);
+    // } else {
+      map.setCenter(place.geometry.location);
+      map.setZoom(17);  // Why 17? Because it looks good.
+    // }
+    // marker.setPosition(place.geometry.location);
+    // marker.setVisible(true);
 
-// var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-// var acOptions = {
-//   types: ['establishment']
-// };
-// var autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'),acOptions);
-// autocomplete.bindTo('bounds',map);
-// var infoWindow = new google.maps.InfoWindow();
-// var marker = new google.maps.Marker({
-//   map: map
-// });
+    // var address = '';
+    // if (place.address_components) {
+    //   address = [
+    //     (place.address_components[0] && place.address_components[0].short_name || ''),
+    //     (place.address_components[1] && place.address_components[1].short_name || ''),
+    //     (place.address_components[2] && place.address_components[2].short_name || '')
+    //   ].join(' ');
+    // }
 
-// google.maps.event.addListener(autocomplete, 'place_changed', function() {
-//   infoWindow.close();
-//   var place = autocomplete.getPlace();
-//   if (place.geometry.viewport) {
-//     map.fitBounds(place.geometry.viewport);
-//   } else {
-//     map.setCenter(place.geometry.location);
-//     map.setZoom(17);
-//   }
-//   marker.setPosition(place.geometry.location);
-//   infoWindow.setContent('<div><strong>' + place.name + '</strong><br>');
-//   infoWindow.open(map, marker);
-//   google.maps.event.addListener(marker,'click',function(e){
+    // infowindowContent.children['place-icon'].src = place.icon;
+    // infowindowContent.children['place-name'].textContent = place.name;
+    // infowindowContent.children['place-address'].textContent = address;
+    // infowindow.open(map, marker);
+  });
 
-//     infoWindow.open(map, marker);
+  // Sets a listener on a radio button to change the filter type on Places
+  // Autocomplete.
+  // function setupClickListener(id, types) {
+  //   var radioButton = document.getElementById(id);
+  //   radioButton.addEventListener('click', function() {
+  //     autocomplete.setTypes(types);
+  //   });
+  // }
 
-//   });
-// });
+  // setupClickListener('changetype-all', []);
+  // setupClickListener('changetype-address', ['address']);
+  // setupClickListener('changetype-establishment', ['establishment']);
+  // setupClickListener('changetype-geocode', ['geocode']);
+
+  // document.getElementById('use-strict-bounds')
+  //     .addEventListener('click', function() {
+  //       console.log('Checkbox clicked! New state=' + this.checked);
+  //       autocomplete.setOptions({strictBounds: this.checked});
+  //     });
+}
