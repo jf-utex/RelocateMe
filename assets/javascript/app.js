@@ -1,17 +1,31 @@
 
+//grabs google response and parses string into searchable components for the queryURL
+var googleResponse = parseString {
+	streetNumber: 0,
+	streetAddress: streetAddress,
+	city: city,
+	state: state,
+	zip: zip,
+	
+}
+// ajax call for API
+$.ajax({
+   url: queryURL,
+    method: "GET"
+}).done(function(response) {
 
-// Jeannie working through ajax and API for Zillow
-// $.ajax({ url: queryURL, method: 'GET' })
-// .done(function(response) {
+$(".panel-body").on("click", ".submit", function() {
+ inputName = $(this).attr("data-name");
+       queryURL="https:www.zillow.com/webservice/GetSearchResults.htm?zws-id=X1-ZWz1fyhgwn6qyz_8fetn&address=" + streetNumber + streetAddress + address2 + "&citystatezip=" + city + "%2C" + state + zip;
+        gethouse();
+       console.log(this).attr("data-name");
+
+});
+// Initial array of houses pulled from Zillow after google address pull
+var house[results];
+
+loop (i=0; i<house.length; i++);
+results append table;
+$("tbody").append("<tr><td>" + streetNumber + "</td><td>" + streetAddress + "</td><td>" + address2 + "</td><td>" + streetAddress + "</td><td>" + city + "</td><td>" + state + "</td><td>" + state + "</td></tr>");
 
 
-//     $(".panel-body").on("click", ".buttons", function() {
-//         inputName = $(this).attr("data-name");
-//         queryURL = "https:www.zillow.com/webservice/GetSearchResults.htm?zws-id=X1-ZWz1fyhgwn6qyz_8fetn&address=2114+Bigelow+Ave&citystatezip=Seattle%2C+WA"
-        
-        
-        
-//         "https://api.giphy.com/v1/gifs/search?q=" + classics + "&limit=10&rating=pg&api_key=4f140638c6744217b071e2e6b0d01ab8";
-//         $(".gifs-display").empty();
-//         getGifs();
-//         console.log(this).attr("data-name")

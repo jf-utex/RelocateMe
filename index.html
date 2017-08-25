@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     <title>RelocateMe</title>
-
+    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     
     <!-- Latest compiled and minified CSS -->
@@ -14,12 +14,12 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
     <div class = "container">
 
-        <div class = "container" id = "jumbotronContainer">
+        <div class = "container text-center" id = "jumbotronContainer">
             <div class="jumbotron">
                 <h1>RelocateMe</h1>
                 <p>Enter the employer and city state that you are looking for and we will show you housing, school district, and ammenities in the area.</p>
@@ -44,7 +44,6 @@
             <ul class="list-group">
             <!-- // code for companyListItem below-->
             <!-- <li class="list-group-item" id = "companyListItem">example</li> -->
-            
             </ul>
         </div>
 
@@ -56,16 +55,30 @@
             </div>
         </div>
             
-        <div class = "container" id = "housingListContainer">
-            <ul class="list-group">
-            <!-- // code for housingListItem below     -->
-            <!-- <li class="list-group-item" id = "housingListItem">example</li> -->
-            
-            </ul>
+        <div class="panel panel-primary"> <!--to hold train schedule output-->
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th>House Address</th>
+                        <th>Street Name</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Zip</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table> <!--closes primary panel for train scheduel output-->
+
+            </div>
+        </div>  <!--close panel-primary to hold return -->
         </div>
-    
     </div>
     <script type="text/javascript" src = "assets/javascript/app.js">
     </script>
 </body>
 </html>
+
+<tr>
+                            
