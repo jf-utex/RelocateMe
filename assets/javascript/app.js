@@ -14,7 +14,7 @@ function initMap() {
     //var card = document.getElementById('pac-card');
     var input = document.getElementById('pac-input');
     // var types = document.getElementById('type-selector');
-    // var strictBounds = document.getElementById('strict-bounds-selector');
+    var strictBounds = document.getElementById('strict-bounds-selector');
 
     //map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
@@ -23,7 +23,7 @@ function initMap() {
     // Bind the map's bounds (viewport) property to the autocomplete object,
     // so that the autocomplete requests use the current map bounds for the
     // bounds option in the request.
-    //autocomplete.bindTo('bounds', map);
+    autocomplete.bindTo('bounds', map);
 
     // var infowindow = new google.maps.InfoWindow();
     // var infowindowContent = document.getElementById('infowindow-content');
@@ -53,6 +53,7 @@ function initMap() {
         map.setCenter(place.geometry.location);
         map.setZoom(17);  // Why 17? Because it looks good.
     // }
+    console.log(place.geometry.location);
     // marker.setPosition(place.geometry.location);
     // marker.setVisible(true);
 
@@ -72,18 +73,20 @@ function initMap() {
 
         var latLong = place.geometry.location;
         var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + latLong;
-
+       
         $.ajax({
           url: queryURL,
           method: "GET"
         }).done(function(response){
-
-
-
+    
+          console.log (response);
+    
+    
         });
+   
 
     });
-
+   
     // Sets a listener on a radio button to change the filter type on Places
     // Autocomplete.
     // function setupClickListener(id, types) {
