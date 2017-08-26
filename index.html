@@ -28,40 +28,45 @@
         </div> <!--close div class container and id jumBotron-->
     </div> <!--close div for class container -->
     <div class = "container">  <!--Container for Google HTML-->
-      <div class="pac-card" id="pac-card">
-        <div>
-          <div id="title">
-            Autocomplete search
-          </div>
-          <div id="type-selector" class="pac-controls">
-            <input type="radio" name="type" id="changetype-all" checked="checked">
-            <label for="changetype-all">All</label>
-  
-            <input type="radio" name="type" id="changetype-establishment">
-            <label for="changetype-establishment">Establishments</label>
-  
-            <input type="radio" name="type" id="changetype-address">
-            <label for="changetype-address">Addresses</label>
-  
-            <input type="radio" name="type" id="changetype-geocode">
-            <label for="changetype-geocode">Geocodes</label>
-          </div>
-          <div id="strict-bounds-selector" class="pac-controls">
-            <input type="checkbox" id="use-strict-bounds" value="">
-            <label for="use-strict-bounds">Strict Bounds</label>
-          </div>
-        </div>
-        <div id="pac-container">
-          <input id="pac-input" type="text" placeholder="Enter a location">
-        </div>
+        <div class="pac-card" id="pac-card">
+                        <div> <!-- open div for holding search for user input to google-->
+                        <div id="title">
+                            Autocomplete search
+                        </div> <!--close auto search-->
+                        
+                            <div id="type-selector" class="pac-controls">
+                                <input type="radio" name="type" id="changetype-all" checked="checked">
+                                <label for="changetype-all">All</label>
+                    
+                                <input type="radio" name="type" id="changetype-establishment">
+                                <label for="changetype-establishment">Establishments</label>
+                    
+                                <input type="radio" name="type" id="changetype-address">
+                                <label for="changetype-address">Addresses</label>
+                    
+                                <input type="radio" name="type" id="changetype-geocode">
+                                <label for="changetype-geocode">Geocodes</label>
+                            </div> <!-- close ID type selector for radio buttons-->
+                            
+                            <div id="strict-bounds-selector" class="pac-controls">
+                                <input type="checkbox" id="use-strict-bounds" value="">
+                                <label for="use-strict-bounds">Strict Bounds</label>
+                            </div> <!-- close for pac-controls-->
+                        
+                                <div id="pac-container">
+                                    <input id="pac-input" type="text" placeholder="Enter a location">
+                                </div>
 
-      </div>
+                        </div>  <!-- close div for holding search for user input to google-->
+
       <div id="map"></div>
-      <div id="infowindow-content">
-        <img src="" width="16" height="16" id="place-icon">
-        <span id="place-name"  class="title"></span><br>
-        <span id="place-address"></span>
-      </div>
+
+        <div id="infowindow-content">
+            <img src="" width="16" height="16" id="place-icon">
+            <span id="place-name"  class="title"></span><br>
+            <span id="place-address"></span>
+        </div> <!-- close infowindow-content-->
+        </div> <!-- close div for pac-card" id="pac-card"-->
     </div> <!--close div for class container  to hold Google HTML-->  
          <!-- Panel for PlaceILive Data    -->
          <div class = "container">
