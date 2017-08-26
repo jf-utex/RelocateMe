@@ -1,22 +1,12 @@
 
-//grabs google response and parses string into searchable components for the queryURL
-var googleResponse = parseString {
-	streetNumber: 0,
-	streetAddress: streetAddress,
-	city: city,
-	state: state,
-	zip: zip,
-	
-}
-
-
-
 
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 function initMap() {
+
+
     var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.773972, lng: -122.431297},
     zoom: 12
@@ -114,4 +104,5 @@ function initMap() {
     //       autocomplete.setOptions({strictBounds: this.checked});
     //     });
 }
+
 
