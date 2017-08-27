@@ -14,7 +14,7 @@ function initMap() {
     //var card = document.getElementById('pac-card');
     var input = document.getElementById('pac-input');
     // var types = document.getElementById('type-selector');
-    // var strictBounds = document.getElementById('strict-bounds-selector');
+    var strictBounds = document.getElementById('strict-bounds-selector');
 
     //map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
@@ -23,7 +23,7 @@ function initMap() {
     // Bind the map's bounds (viewport) property to the autocomplete object,
     // so that the autocomplete requests use the current map bounds for the
     // bounds option in the request.
-    //autocomplete.bindTo('bounds', map);
+    autocomplete.bindTo('bounds', map);
 
     // var infowindow = new google.maps.InfoWindow();
     // var infowindowContent = document.getElementById('infowindow-content');
@@ -53,6 +53,7 @@ function initMap() {
         map.setCenter(place.geometry.location);
         map.setZoom(17);  // Why 17? Because it looks good.
     // }
+    console.log(place.geometry.location);
     // marker.setPosition(place.geometry.location);
     // marker.setVisible(true);
 
@@ -71,6 +72,7 @@ function initMap() {
     // infowindow.open(map, marker);
 
         var latLong = place.geometry.location;
+
         
 
         // var lat = latLong.slice(1, 12);
@@ -78,6 +80,7 @@ function initMap() {
         var lat = latLong.lat();
         var long = latLong.lng();
         var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
+
 
         $.ajax({
           url: queryURL,
@@ -87,10 +90,28 @@ function initMap() {
 
 
         
+
         });
+   
 
     });
 
+    var address=childSnapshot.val().address;
+    var transportation=childSnapshot.val().transportation;
+    var safety=childSnapshot.val().safety;
+    var health=childSnapshot.val().health;
+    var snl=childSnapshot.val().snl;
+  
+
+    $("tbody").append("<tr><td>" + address + "</td><td>" + transportation + "</td><td>" + safety + "</td><td>" + health + "</td><td>" + snl + "</td></tr>");
+    
+    //Clear boxes on Submit
+    $("#address").val("");
+    $("transportation").val("");
+    $("saftey").val("");
+    $("#health").val("");
+    $("#snl").val("");
+   
     // Sets a listener on a radio button to change the filter type on Places
     // Autocomplete.
     // function setupClickListener(id, types) {
