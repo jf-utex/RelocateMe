@@ -27,74 +27,75 @@
             </div> <!--close div for class Jumbotron-->
         </div> <!--close div class container and id jumBotron-->
     </div> <!--close div for class container -->
+
     <div class = "container">  <!--Container for Google HTML-->
         <div class="pac-card" id="pac-card">
-                        <div> <!-- open div for holding search for user input to google-->
-                        <div id="title">
-                            Autocomplete search
-                        </div> <!--close auto search-->
-                        
-                            <div id="type-selector" class="pac-controls">
-                                <input type="radio" name="type" id="changetype-all" checked="checked">
-                                <label for="changetype-all">All</label>
-                    
-                                <input type="radio" name="type" id="changetype-establishment">
-                                <label for="changetype-establishment">Establishments</label>
-                    
-                                <input type="radio" name="type" id="changetype-address">
-                                <label for="changetype-address">Addresses</label>
-                    
-                                <input type="radio" name="type" id="changetype-geocode">
-                                <label for="changetype-geocode">Geocodes</label>
-                            </div> <!-- close ID type selector for radio buttons-->
-                            
-                            <div id="strict-bounds-selector" class="pac-controls">
-                                <input type="checkbox" id="use-strict-bounds" value="">
-                                <label for="use-strict-bounds">Strict Bounds</label>
-                            </div> <!-- close for pac-controls-->
-                        
-                                <div id="pac-container">
-                                    <input id="pac-input" type="text" placeholder="Enter a location">
-                                </div>
+            <div>      <!--open div for holding search for user input to google -->
+                <div id="title">
+                    Autocomplete search
+                </div> <!--close auto search-->
+            
+                <div id="type-selector" class="pac-controls">
+                    <input type="radio" name="type" id="changetype-all" checked="checked">
+                    <label for="changetype-all">All</label>
+        
+                    <input type="radio" name="type" id="changetype-establishment">
+                    <label for="changetype-establishment">Establishments</label>
+        
+                    <input type="radio" name="type" id="changetype-address">
+                    <label for="changetype-address">Addresses</label>
+        
+                    <input type="radio" name="type" id="changetype-geocode">
+                    <label for="changetype-geocode">Geocodes</label>
+                </div> <!-- close ID type selector for radio buttons-->
+                
+                <div id="strict-bounds-selector" class="pac-controls">
+                    <input type="checkbox" id="use-strict-bounds" value="">
+                    <label for="use-strict-bounds">Strict Bounds</label>
+                </div> <!-- close for pac-controls-->
+            
+                <div id="pac-container">
+                    <input id="pac-input" type="text" placeholder="Enter a location">
+                </div>
+            </div>  <!-- close div for holding search for user input to google-->
 
-                        </div>  <!-- close div for holding search for user input to google-->
+            <div id="map"></div>
 
-      <div id="map"></div>
+            <div id="infowindow-content">
+                <img src="" width="16" height="16" id="place-icon">
+                <span id="place-name"  class="title"></span><br>
+                <span id="place-address"></span>
+            </div> <!-- close infowindow-content-->
 
-        <div id="infowindow-content">
-            <img src="" width="16" height="16" id="place-icon">
-            <span id="place-name"  class="title"></span><br>
-            <span id="place-address"></span>
-        </div> <!-- close infowindow-content-->
         </div> <!-- close div for pac-card" id="pac-card"-->
-    </div> <!--close div for class container  to hold Google HTML-->  
+    </div> <!--close div for class container  to hold Google HTML--> 
+<br>
          <!-- Panel for PlaceILive Data    -->
-         <div class = "container">
-         <div class="panel panel-primary"> <!--to hold train schedule output-->
+    <div class = "container">
+        <div class="panel panel-primary"> <!--to hold train schedule output-->
             <div class="panel-body">
                 <table class="table">
                     <thead>
                         <tr>
-                        <th>House Address</th>
-                        <th>Street Name</th>
-                        <th>City</th>
-                        <th>State</th>
-                        <th>Zip</th>
+                        <th>Address</th>
+                        <th>Transportation</th>
+                        <th>Safety</th>
+                        <th>Health</th>
+                        <th>Sports and Leisure</th>
                         </tr>
                     </thead>
                     <tbody>
                     </tbody>
-                </table> <!--closes primary panel for train scheduel output-->
+                </table> <!--closes primary panel for ratings output-->
             </div> 
         </div>  <!--close panel-primary to hold return-->
-        </div>
-        </div>
-    </div>
+    </div> <!-- close div for container holding output-->
+   
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsa_wxn57WwF3Wr07LCs9jmoCCBvKlRaU&libraries=places&callback=initMap"
     async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src = "assets/javascript/app.js">
-    </script>
+    <script type="text/javascript" src = "assets/javascript/app.js"></script>
+
 </body>
 </html>
 

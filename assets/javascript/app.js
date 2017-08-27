@@ -86,6 +86,22 @@ function initMap() {
    
 
     });
+
+    var address=childSnapshot.val().address;
+    var transportation=childSnapshot.val().transportation;
+    var safety=childSnapshot.val().safety;
+    var health=childSnapshot.val().health;
+    var snl=childSnapshot.val().snl;
+  
+
+    $("tbody").append("<tr><td>" + address + "</td><td>" + transportation + "</td><td>" + safety + "</td><td>" + health + "</td><td>" + snl + "</td></tr>");
+    
+    //Clear boxes on Submit
+    $("#address").val("");
+    $("transportation").val("");
+    $("saftey").val("");
+    $("#health").val("");
+    $("#snl").val("");
    
     // Sets a listener on a radio button to change the filter type on Places
     // Autocomplete.
