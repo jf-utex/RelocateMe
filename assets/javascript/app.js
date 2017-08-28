@@ -36,8 +36,8 @@ function initMap() {
     autocomplete.addListener('place_changed', function() {
     // infowindow.close();
     // marker.setVisible(false);
-    var place = autocomplete.getPlace();
-
+        var place = autocomplete.getPlace();
+        console.log(place);
 
     // if (!place.geometry) {
     //   // User entered the name of a Place that was not suggested and
@@ -72,16 +72,25 @@ function initMap() {
     // infowindow.open(map, marker);
 
         var latLong = place.geometry.location;
-        var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + latLong;
-       
+
+        
+
+        // var lat = latLong.slice(1, 12);
+        // var long = latLong.slice(13, 32);         
+        var lat = latLong.lat();
+        var long = latLong.lng();
+        var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
+
+
         $.ajax({
           url: queryURL,
           method: "GET"
         }).done(function(response){
-    
-          console.log (response);
-    
-    
+
+
+
+        
+
         });
    
 
@@ -130,5 +139,4 @@ function initMap() {
     //       autocomplete.setOptions({strictBounds: this.checked});
     //     });
 }
-
 
