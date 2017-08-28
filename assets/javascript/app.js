@@ -77,7 +77,7 @@ function initMap() {
         // var long = latLong.slice(13, 32);         
         var lat = latLong.lat();
         var long = latLong.lng();
-        var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
+        var queryURL = "http://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
 
         $.ajax({
           url: queryURL,
@@ -85,7 +85,7 @@ function initMap() {
         }).done(function(response){
 
 
-
+            console.log(response)
         
         });
 
