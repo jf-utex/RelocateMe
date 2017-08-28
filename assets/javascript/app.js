@@ -37,6 +37,7 @@ function initMap() {
         var place = autocomplete.getPlace();
         console.log(place);
 
+
     // if (!place.geometry) {
     //   // User entered the name of a Place that was not suggested and
     //   // pressed the Enter key, or the Place Details request failed.
@@ -85,20 +86,21 @@ function initMap() {
           method: "GET"
         }).done(function(response){
 
-
-            console.log(response);
                 response.map(function(item) {
-                    return {name: item.name, lat: item.latitude, long: item.longitude}
-                    var markers = [];
-
-                }).map(function(item) {
+                    //console.log(item.latitude);
+                    var markers = {
+                        name: item.name, 
+                        lat: item.latitude, 
+                        long: item.longitude
+                    };
+                    console.log(result);
+                    return result;
                     
-                })
+                });
 
-                console.log(item.latitude, item.longitude);
+                // console.log(item.latitude, item.longitude);
         });
         
-
     });
 // fir childSnapshot taken from train example
     // var address=childSnapshot.val().address;
