@@ -28,7 +28,7 @@ function initMap() {
     // infowindow.setContent(infowindowContent);
     // var marker = new google.maps.Marker({
     //   map: map,
-    //   anchorPoint: new google.maps.Point(0, -29)
+    //   anchorPoint: new google.maps.Point(lat, long)
     // });
 
     autocomplete.addListener('place_changed', function() {
@@ -89,6 +89,8 @@ function initMap() {
             console.log(response);
                 response.map(function(item) {
                     return {name: item.name, lat: item.latitude, long: item.longitude}
+                    var markers = [];
+
                 }).map(function(item) {
                     
                 })
