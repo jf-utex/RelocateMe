@@ -23,7 +23,7 @@ function initMap() {
     // Bind the map's bounds (viewport) property to the autocomplete object,
     // so that the autocomplete requests use the current map bounds for the
     // bounds option in the request.
-    //autocomplete.bindTo('bounds', map);
+    autocomplete.bindTo('bounds', map);
 
     // var infowindow = new google.maps.InfoWindow();
     // var infowindowContent = document.getElementById('infowindow-content');
@@ -73,20 +73,73 @@ function initMap() {
         var latLong = place.geometry.location;
         
 
+     // var lat = latLong.lat();
+        // var long = latLong.lng();
+        // var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
+        // console.log(queryURL)
+        // $.ajax({
+        //   url: 'http://galvanize-cors-proxy.herokuapp.com/' + queryURL,
+        //   method: "GET"
+        // }).done(function(response){
+
+
+        //     console.log(response)
+        
+
+        // });
+        
+
+    
+        
         // var lat = latLong.slice(1, 12);
         // var long = latLong.slice(13, 32);         
         var lat = latLong.lat();
         var long = latLong.lng();
-        var queryURL = "http://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
-
+        var queryURL = "https://www.refugerestrooms.org:443/api/v1/restrooms/by_location.json?lat=" + lat + "&lng=" + long;
         $.ajax({
           url: queryURL,
           method: "GET"
-        }).done(function(response){
-
-
-            console.log(response)
+        })
         
+        .done(function(response){
+            console.log(response);
+                response.map(function(item) {
+                    var markers = {name:item.name, lat:item.latitude, long:item.longitude, comment:item.comment};
+                    console.log(markers);
+                    
+                    // Display multiple markers on a map
+                    var infoWindow = new google.maps.InfoWindow(), marker, i;
+                    
+                    // Loop through our array of markers & place each one on the map  
+                   
+                        var position = new google.maps.LatLng(markers.lat, markers.long);
+                        //bounds.extend(position);
+                        marker = new google.maps.Marker({
+                            position: position,
+                            map: map,
+                            title: markers.name, 
+                            fillColor: "#4285f4"
+                        });
+                        
+                        // Allow each marker to have an info window    
+                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                            return function() {
+                                infoWindow.setContent(markers.name);
+                                infoWindow.open(map, marker);
+                            }
+                        })(marker, i));
+
+                        // Automatically center the map fitting all markers on the screen
+                       // map.fitBounds(bounds);
+                    
+    
+
+                })
+                
+                // .map(function(item) {
+                //     console.log(response.item.latitude, response.item.longitude);
+                // })
+                
         });
 
     });
