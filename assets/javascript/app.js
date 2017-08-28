@@ -4,6 +4,23 @@
 
 function initMap() {
 
+    var modal = document.getElementById('myModal');
+            // Get the button that opens the modal
+    
+      // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+
 
     var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.773972, lng: -122.431297},
@@ -38,12 +55,21 @@ function initMap() {
         console.log(place);
 
 
-    // if (!place.geometry) {
+    if (!place.geometry) {
     //   // User entered the name of a Place that was not suggested and
     //   // pressed the Enter key, or the Place Details request failed.
     //   window.alert("No details available for input: '" + place.name + "'");
-    //   return;
-    // }
+
+    // Get the modal
+        modal.style.display = 'block'
+
+        // When the user clicks on the button, open the modal 
+
+
+        // When the user clicks on <span> (x), close the modal
+        
+      return;
+    }
 
     // If the place has a geometry, then present it on a map.
     // if (place.geometry.viewport) {
@@ -97,8 +123,6 @@ function initMap() {
                     return markers;
                     
                 });
-
-                // console.log(item.latitude, item.longitude);
         });
         
     });
@@ -142,4 +166,5 @@ function initMap() {
     //       autocomplete.setOptions({strictBounds: this.checked});
     //     });
 }
+
 
