@@ -95,13 +95,20 @@ function initMap() {
    
 
     });
-
-    var address=childSnapshot.val().address;
-    var transportation=childSnapshot.val().transportation;
-    var safety=childSnapshot.val().safety;
-    var health=childSnapshot.val().health;
-    var snl=childSnapshot.val().snl;
+// fir childSnapshot taken from train example
+    // var address=childSnapshot.val().address;
+    // var transportation=childSnapshot.val().transportation;
+    // var safety=childSnapshot.val().safety;
+    // var health=childSnapshot.val().health;
+    // var snl=childSnapshot.val().snl;
   
+ 
+    console.log(address);
+    console.log(transportation);
+    console.log(safety);
+    console.log(health);
+    console.log(snl);
+
 
     $("tbody").append("<tr><td>" + address + "</td><td>" + transportation + "</td><td>" + safety + "</td><td>" + health + "</td><td>" + snl + "</td></tr>");
     
