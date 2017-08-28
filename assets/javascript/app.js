@@ -79,7 +79,7 @@ function initMap() {
         // var long = latLong.slice(13, 32);         
         var lat = latLong.lat();
         var long = latLong.lng();
-        var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
+        var queryURL = "https://www.refugerestrooms.org:443/api/v1/restrooms/by_location.json?lat=" + lat + "&lng=" + long;
 
 
         $.ajax({
@@ -88,11 +88,11 @@ function initMap() {
         }).done(function(response){
 
 
-
+            console.log(response);
         
 
         });
-   
+        
 
     });
 // fir childSnapshot taken from train example
@@ -103,21 +103,17 @@ function initMap() {
     // var snl=childSnapshot.val().snl;
   
  
-    console.log(address);
-    console.log(transportation);
-    console.log(safety);
-    console.log(health);
-    console.log(snl);
+    
 
 
-    $("tbody").append("<tr><td>" + address + "</td><td>" + transportation + "</td><td>" + safety + "</td><td>" + health + "</td><td>" + snl + "</td></tr>");
+    // $("tbody").append("<tr><td>" + name + "</td><td>" + street + "</td><td>" + city + "</td><td>" + state + "</td></tr>");
     
     //Clear boxes on Submit
-    $("#address").val("");
-    $("transportation").val("");
-    $("saftey").val("");
-    $("#health").val("");
-    $("#snl").val("");
+    // $("#address").val("");
+    // $("transportation").val("");
+    // $("saftey").val("");
+    // $("#health").val("");
+    // $("#snl").val("");
    
     // Sets a listener on a radio button to change the filter type on Places
     // Autocomplete.
