@@ -89,8 +89,12 @@ function initMap() {
 
 
             console.log(response);
-        
+                response.map(function(item) {
+                    return {lat: item.latitude, long: item.longitude}
+                }).map(function(item) {
 
+                })
+                console.log(resultLat);
         });
         
 
@@ -109,11 +113,11 @@ function initMap() {
     // $("tbody").append("<tr><td>" + name + "</td><td>" + street + "</td><td>" + city + "</td><td>" + state + "</td></tr>");
     
     //Clear boxes on Submit
-    // $("#address").val("");
-    // $("transportation").val("");
-    // $("saftey").val("");
-    // $("#health").val("");
-    // $("#snl").val("");
+    // $("#name").val("");
+    // $("#street").val("");
+    // $("#city").val("");
+    // $("#state").val("");
+   
    
     // Sets a listener on a radio button to change the filter type on Places
     // Autocomplete.
