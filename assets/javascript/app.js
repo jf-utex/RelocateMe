@@ -93,8 +93,8 @@ function initMap() {
                         lat: item.latitude, 
                         long: item.longitude
                     };
-                    console.log(result);
-                    return result;
+                    console.log(markers);
+                    return markers;
                     
                 });
 
