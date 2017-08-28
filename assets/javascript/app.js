@@ -1,5 +1,3 @@
-
-
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
@@ -90,11 +88,12 @@ function initMap() {
 
             console.log(response);
                 response.map(function(item) {
-                    return {lat: item.latitude, long: item.longitude}
+                    return {name: item.name, lat: item.latitude, long: item.longitude}
                 }).map(function(item) {
-
+                    
                 })
-                console.log(resultLat);
+
+                console.log(item.latitude, item.longitude);
         });
         
 
