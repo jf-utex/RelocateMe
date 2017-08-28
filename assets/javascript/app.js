@@ -103,11 +103,11 @@ function initMap() {
     // var snl=childSnapshot.val().snl;
   
  
-    console.log(address);
-    console.log(transportation);
-    console.log(safety);
-    console.log(health);
-    console.log(snl);
+    // console.log(address);
+    // console.log(transportation);
+    // console.log(safety);
+    // console.log(health);
+    // console.log(snl);
 
 
     $("tbody").append("<tr><td>" + address + "</td><td>" + transportation + "</td><td>" + safety + "</td><td>" + health + "</td><td>" + snl + "</td></tr>");
