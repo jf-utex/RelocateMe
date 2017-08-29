@@ -228,12 +228,7 @@ function initMap() {
     //       autocomplete.setOptions({strictBounds: this.checked});
     //     });
 
-    var resetButton = document.getElementbyId('resetButton');
-    resetButton.onclick= reloadPage;
-    
-    function reloadPage(){
-       window.location.reload();
-    }
+
     
 }
 
