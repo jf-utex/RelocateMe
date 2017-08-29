@@ -2,6 +2,10 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
+function refreshPage(){
+    window.location.reload();
+} 
+
 function initMap() {
 
     var modal = document.getElementById('myModal');
@@ -223,6 +227,14 @@ function initMap() {
     //       console.log('Checkbox clicked! New state=' + this.checked);
     //       autocomplete.setOptions({strictBounds: this.checked});
     //     });
+
+    var resetButton = document.getElementbyId('resetButton');
+    resetButton.onclick= reloadPage;
+    
+    function reloadPage(){
+       window.location.reload();
+    }
+    
 }
 
 

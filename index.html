@@ -59,15 +59,15 @@
         
                     <input type="radio" name="type" id="changetype-address">
                     <label for="changetype-address">Addresses</label>
+
+                    <div id="strict-bounds-selector" class="pac-controls">
+                        <input type="checkbox" id="use-strict-bounds" value="">
+                        <label for="use-strict-bounds">Strict Bounds</label>
+                    </div> <!-- close for pac-controls-->
         
-                    <input type="radio" name="type" id="changetype-geocode">
-                    <label for="changetype-geocode">Geocodes</label>
-                </div> <!-- close ID type selector for radio buttons-->
-                
-                <div id="strict-bounds-selector" class="pac-controls">
-                    <input type="checkbox" id="use-strict-bounds" value="">
-                    <label for="use-strict-bounds">Strict Bounds</label>
-                </div> <!-- close for pac-controls-->
+                    <button type="button" class="btn btn-info" onClick="refreshPage()">Reset Search</button>
+                    
+                <!-- close for pac-controls-->
             
                 <div id="pac-container">
                     <input id="pac-input" type="text" placeholder="Enter a location">
