@@ -1,7 +1,7 @@
 html, body {
     height: 100%;
     margin: 0;
-    background-color: #84a6df; 
+    background-color: #ebe8de; 
     padding: 0;
 }
 .jumbotron {
@@ -19,7 +19,6 @@ html, body {
     color: navy;
     font-weight: bold;
 }
-/* The Modal (background) */
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
@@ -129,7 +128,7 @@ html, body {
 
 #title {
   color: #fff;
-  background-color: #4d90fe;
+  background-color: #5f91fa;
   font-size: 25px;
   font-weight: 500;
   padding: 6px 12px;
