@@ -64,9 +64,8 @@ function initMap() {
     //   // pressed the Enter key, or the Place Details request failed.
     
    
-    var noDetails = "No details available, please reset the page and select from the dropdown.";
-    
-    // '" + place.name + "'";
+
+    var noDetails = "No details available for input";
     var eerespond = $('<div>');
     $("#eerespond").text(noDetails);
     // Get the modal
@@ -96,6 +95,34 @@ function initMap() {
     // marker.setPosition(place.geometry.location);
     // marker.setVisible(true);
 
+
+//     new Marker({
+//         position: place.geometry.location,
+//         map: map,
+//         title: 'asdfasf',
+//         icon: {
+//             path: SQUARE_PIN,
+//             fillColor: 'blue',
+//             fillOpacity: .5,
+//             strokeColor: '',
+//             strokeWeight: 0
+//         },
+//         map_icon_label: '<span class="map-icon map-icon-bank"></span>'
+
+//         // fillColor: "#4285f4"
+// });
+var placeMarker = new Marker({
+	map: map,
+	position: place.geometry.location,
+	icon: {
+		path: SQUARE_PIN,
+		fillColor: '#00CCBB',
+		fillOpacity: 1,
+		strokeColor: '',
+		strokeWeight: 0
+	},
+	map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
+});
 
     // var address = '';
     // if (place.address_components) {
@@ -140,13 +167,13 @@ function initMap() {
                 var avgSafety = sumSafety / safetyArray.length;
                 console.log(avgSafety)
 //////////////////
-                var safetyResponse = response;
+                var safetyResponse = safety;
                 
                 
                 for (i = 0 ; i < safetyResponse.length; i++){
-                $("table > tbody").append("<tr><td>" + safetyResponse[i].name + "</td></tr>"}
+                $("table > tbody").append("<tr><td>" + safetyResponse[i].name + "</td></tr>")
 
-            });
+            }
 
 
 //////////////////            
@@ -170,12 +197,19 @@ function initMap() {
                     // Loop through our array of markers & place each one on the map  
                    
                         var position = new google.maps.LatLng(markers.lat, markers.long);
-                        bounds.extend(position);
-                        marker = new google.maps.Marker({
+                        // bounds.extend(position);
+                        var marker = new google.maps.Marker({
                             position: position,
-                            map: map,
+                            map: map
                             
                         });
+
+                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                            return function() {
+                                infoWindow.setContent(markers.name);
+                                infoWindow.open(map, marker);
+                            }
+                        })(marker, i));
                        ///////// 
                         var mapResponse = response;
                         
@@ -188,12 +222,7 @@ function initMap() {
 
                     /////////////
                         // Allow each marker to have an info window    
-                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                            return function() {
-                                infoWindow.setContent(markers.name);
-                                infoWindow.open(map, marker);
-                            }
-                        })(marker, i));
+                      
 
                         // Automatically center the map fitting all markers on the screen
                        // map.fitBounds(bounds);
@@ -205,6 +234,7 @@ function initMap() {
         });
         
     });
+}
    
     // Sets a listener on a radio button to change the filter type on Places
     // Autocomplete.
@@ -227,7 +257,6 @@ function initMap() {
     //     });
 
 
-    
-}
 
 
+initMap()
