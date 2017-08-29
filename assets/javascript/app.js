@@ -243,8 +243,8 @@ $.ajax({
 
                         var mapResponse = response;
                         
-                        for (i = 0 ; i < markers.length; i++){
-                        $("table > tbody").append("<tr><td>" + markers.name + "</td><td>" + markers.street + "</td><td>" + markers.accessibility + "</td><td>" + markers.uni + "</td><td>" + markers.comment + "</td><td>" + avgSafety + "</tr></td>");
+                        for (i = 0 ; i < mapResponse.length; i++){
+                        $("table > tbody").append("<tr><td>" + markers.name + "</td><td>" + markers.add + "</td><td>" + markers.acc + "</td><td>" + markers.uni + "</td><td>" + markers.com + "</td><td>" + avgSafety + "</td></tr>");
                         }
         
                     });
