@@ -253,13 +253,13 @@ $.ajax({
                         }
                         for (i = 0 ; i < mapResponse.length; i++){
                             var unis = ""
-                            if(markers.unis===true){
+                            if(markers.acc===true){
                                 unis = "Yes";
                             }else{
                                 unis = "No";
                             }
                         }
-                        $("table > tbody").append("<tr><td>" + markers.name + "</td><td>" + markers.add + "</td><td>" + access + "</td><td>" + unis + "</td><td>" + markers.com + "</td><td>" + avgSafety + "</td></tr>");
+                        $("table > tbody").append("<tr><td>" + markers.name + "</td><td>" + markers.add + "</td><td>" + access + "</td><td>" + unis + "</td><td>" + markers.com + "</td><td>" + avgSafety + "%" + "</td></tr>");
                         
                         
         
