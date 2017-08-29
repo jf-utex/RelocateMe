@@ -2,10 +2,6 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-function refreshPage(){
-    window.location.reload();
-} 
-
 function initMap() {
 
     var modal = document.getElementById('myModal');
@@ -59,29 +55,44 @@ function initMap() {
         console.log(place);
 
 
+
+   // Add a marker at San Francisco with an azure colored marker.
+   //   markerMarker = map.add(new.MarkerOptions(){
+   //     position: place;
+   //     title: place;
+   //     snippet: "hello people"
+   //     icon: (BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)
+   // });
+
+
     if (!place.geometry) {
-    //   // User entered the name of a Place that was not suggested
+    //   // User entered the name of a Place that was not suggested and
     //   // pressed the Enter key, or the Place Details request failed.
+    //   window.alert("No details available for input: '" + place.name + "'");
     
-   
-    var noDetails = "No details available for input: '" + place.name + "'";
+    var noDetails = "No details available for input";
     var eerespond = $('<div>');
     $("#eerespond").text(noDetails);
+
     // Get the modal
         modal.style.display = 'block'
-       
-        //When the user clicks anywhere outside of the modal, close it
-        // window.onclick = function(event) {
-        //     if (event.target == modal) {
-        //         modal.style.display = "none";
-        //     }
-        // };
+
+        
+        
+    
+        // When the user clicks on the button, open the modal 
+
 
         // When the user clicks on <span> (x), close the modal
-        
-      return;
+       // $('myModal').on('hidden', function () {
+       //  $.clearInput();
+       //  });
+
+       return;
+      
     }
-    
+        
+
     // If the place has a geometry, then present it on a map.
     // if (place.geometry.viewport) {
     //   map.fitBounds(place.geometry.viewport);
@@ -89,11 +100,25 @@ function initMap() {
         map.setCenter(place.geometry.location);
         map.setZoom(17);  // Why 17? Because it looks good.
     // }
-
     console.log(place.geometry.location);
+
+            new google.maps.Marker({
+                position: place.geometry.location,
+                map: map,
+                title: 'asdfasf',
+                icon: {
+                    path: SQUARE_PIN,
+                    fillColor: 'blue',
+                    fillOpacity: 1,
+                    strokeColor: '',
+                    strokeWeight: 0
+                },
+                map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
+
+                // fillColor: "#4285f4"
+        });
     // marker.setPosition(place.geometry.location);
     // marker.setVisible(true);
-
 
     // var address = '';
     // if (place.address_components) {
@@ -110,54 +135,23 @@ function initMap() {
     // infowindow.open(map, marker);
 
         var latLong = place.geometry.location;
+
+        
+
+        // var lat = latLong.slice(1, 12);
+        // var long = latLong.slice(13, 32);         
         var lat = latLong.lat();
         var long = latLong.lng();
-        
-        var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
-        console.log(queryURL)
-            $.ajax({
-             url: 'http://galvanize-cors-proxy.herokuapp.com/' + queryURL,
-            method: "GET"
-            }).done(function(safety){
-                console.log(safety)
-                var safetyArray = safety.map(function(item){
-                    return item.lqi_category.filter(function(category) {
-                        return category.type === "Safety"
-                    }).map(function(obj) {
-                        return obj.value
-                    })[0]
-                    
-                })
-
-                var sumSafety = safetyArray.reduce(function(a, item) {
-                    return a + item
-                }, 0)
-
-
-                var avgSafety = sumSafety / safetyArray.length;
-                console.log(avgSafety)
-                
-
-
-            });
-        
-
-    
-        
-         
-
-
         var queryURL = "https://www.refugerestrooms.org:443/api/v1/restrooms/by_location.json?lat=" + lat + "&lng=" + long;
+
 
         $.ajax({
           url: queryURL,
           method: "GET"
-        })
-        
-        .done(function(response){
+        }).done(function(response){
             console.log(response);
                 response.map(function(item) {
-                    var markers = {name:item.name, lat:item.latitude, long:item.longitude, com:item.comment, dir:item.directions};
+                    var markers = {name:item.name, lat:item.latitude, long:item.longitude};
                     console.log(markers);
                     
                     // Display multiple markers on a map
@@ -166,12 +160,35 @@ function initMap() {
                     // Loop through our array of markers & place each one on the map  
                    
                         var position = new google.maps.LatLng(markers.lat, markers.long);
-                        bounds.extend(position);
+                        //bounds.extend(position);
                         marker = new google.maps.Marker({
                             position: position,
                             map: map,
-                            
+                            title: markers.name,
+                            icon: {
+                                path: SQUARE_PIN,
+                                fillColor: 'red',
+                                fillOpacity: 1,
+                                strokeColor: '',
+                                strokeWeight: 0
+                            },
+                            map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
+
+                            // fillColor: "#4285f4"
                         });
+
+                        // var marker1 = new Marker({
+                        //     map: map,
+                        //     position: new google.maps.LatLng(-27.46577, 153.02303),
+                            // icon: {
+                            //     path: SQUARE_PIN,
+                            //     fillColor: '#00CCBB',
+                            //     fillOpacity: 1,
+                            //     strokeColor: '',
+                            //     strokeWeight: 0
+                            // },
+                        //     map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
+                        // });
                         
                         // Allow each marker to have an info window    
                         google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -183,14 +200,30 @@ function initMap() {
 
                         // Automatically center the map fitting all markers on the screen
                        // map.fitBounds(bounds);
+                    
+    
+
                 })
-                
-                // .map(function(item) {
-                //     console.log(response.item.latitude, response.item.longitude);
-                // })
-        });
+
+            })
+        })
+
         
-    });
+    }
+
+  
+
+    
+
+
+  
+    
+    //Clear boxes on Submit
+    // $("#name").val("");
+    // $("#street").val("");
+    // $("#city").val("");
+    // $("#state").val("");
+   
    
     // Sets a listener on a radio button to change the filter type on Places
     // Autocomplete.
@@ -211,9 +244,4 @@ function initMap() {
     //       console.log('Checkbox clicked! New state=' + this.checked);
     //       autocomplete.setOptions({strictBounds: this.checked});
     //     });
-
-
-    
-}
-
 
