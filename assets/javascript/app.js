@@ -53,8 +53,14 @@ function initMap() {
         map.setCenter(place.geometry.location);
         map.setZoom(17);  // Why 17? Because it looks good.
     // }
-    // marker.setPosition(place.geometry.location);
-    // marker.setVisible(true);
+
+    // var marker = new google.maps.Marker({
+        //   map: map,
+        //   anchorPoint: new google.maps.Point(0, -29)
+        // });    
+
+        // marker.setPosition(place.geometry.location);
+        // marker.setVisible(true);
 
     // var address = '';
     // if (place.address_components) {
@@ -73,20 +79,22 @@ function initMap() {
         var latLong = place.geometry.location;
         
 
-     // var lat = latLong.lat();
+        // var lat = latLong.lat();
         // var long = latLong.lng();
         // var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
         // console.log(queryURL)
-        // $.ajax({
-        //   url: 'http://galvanize-cors-proxy.herokuapp.com/' + queryURL,
-        //   method: "GET"
-        // }).done(function(response){
+        //     $.ajax({
+        //      url: 'http://galvanize-cors-proxy.herokuapp.com/' + queryURL,
+        //     method: "GET"
+        //     }).done(function(safety){
+        //         console.log(safety)
+        //         safety.map(function(item){
+        //             var avgSafety = Math.mean(item.lqi_category[2].value);
+        //             console.log(avgSafety)
+        //         })
 
 
-        //     console.log(response)
-        
-
-        // });
+        //     });
         
 
     
@@ -118,7 +126,7 @@ function initMap() {
                             position: position,
                             map: map,
                             title: markers.name, 
-                            fillColor: "#4285f4"
+                            // fillColor: "#4285f4"
                         });
                         
                         // Allow each marker to have an info window    
