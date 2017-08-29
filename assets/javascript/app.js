@@ -27,8 +27,8 @@ function initMap() {
 
 
     var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 37.773972, lng: -122.431297},
-    zoom: 12
+        center: {lat: 37.773972, lng: -122.431297},
+        zoom: 12
     });
     //var card = document.getElementById('pac-card');
     var input = document.getElementById('pac-input');
@@ -138,89 +138,118 @@ var placeMarker = new Marker({
     // infowindowContent.children['place-address'].textContent = address;
     // infowindow.open(map, marker);
 
-        var latLong = place.geometry.location;
-        var lat = latLong.lat();
-        var long = latLong.lng();
+var latLong = place.geometry.location;
+var lat = latLong.lat();
+var long = latLong.lng();
         
-        var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
-        console.log(queryURL)
+//         var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
+//         console.log(queryURL)
 
-            $.ajax({
-             url: 'http://galvanize-cors-proxy.herokuapp.com/' + queryURL,
-            method: "GET"
-            }).done(function(safety){
-                console.log(safety)
-                var safetyArray = safety.map(function(item){
-                    return item.lqi_category.filter(function(category) {
-                        return category.type === "Safety"
-                    }).map(function(obj) {
-                        return obj.value
-                    })[0]
+//             $.ajax({
+//              url: 'http://galvanize-cors-proxy.herokuapp.com/' + queryURL,
+//             method: "GET"
+//             }).done(function(safety){
+//                 console.log(safety)
+//                 var safetyArray = safety.map(function(item){
+//                     return item.lqi_category.filter(function(category) {
+//                         return category.type === "Safety"
+//                     }).map(function(obj) {
+//                         return obj.value
+//                     })[0]
                     
-                })
+//                 })
 
-                var sumSafety = safetyArray.reduce(function(a, item) {
-                    return a + item
-                }, 0)
+//                 var sumSafety = safetyArray.reduce(function(a, item) {
+//                     return a + item
+//                 }, 0)
 
 
-                var avgSafety = sumSafety / safetyArray.length;
-                console.log(avgSafety)
-//////////////////
-                var safetyResponse = safety;
+//                 var avgSafety = sumSafety / safetyArray.length;
+//                 console.log(avgSafety)
+
+//                 var safetyResponse = safety;
                 
                 
-                for (i = 0 ; i < safetyResponse.length; i++){
-                $("table > tbody").append("<tr><td>" + safetyResponse[i].name + "</td></tr>")
+                // for (i = 0 ; i < safetyResponse.length; i++){
+                // $("table > tbody").append("<tr><td>" + safetyResponse[i].name + "</td></tr>")
 
-            }
+            // }
 
 
-//////////////////            
+//////////////////  Refuge Restrooms API call          
 
-        var queryURL = "https://www.refugerestrooms.org:443/api/v1/restrooms/by_location.json?lat=" + lat + "&lng=" + long;
+var queryURL = "https://www.refugerestrooms.org:443/api/v1/restrooms/by_location.json?lat=" + lat + "&lng=" + long;
 
-        $.ajax({
-          url: queryURL,
-          method: "GET"
-        })
+$.ajax({
+    url: queryURL,
+    method: "GET"
+})
+
+.done(function(response){
+    console.log(response);
+        response.map(function(item) {
+            var markers = {name:item.name, add:item.street, lat:item.latitude, long:item.longitude, com:item.comment, acc:item.accessible, uni:item.unisex, dir:item.directions};
+            console.log(markers);
+            
+            // Display multiple markers on a map
+            var infoWindow = new google.maps.InfoWindow(), marker, i;
+            
+            // Loop through our array of markers & place each one on the map  
+            
+                var position = new google.maps.LatLng(markers.lat, markers.long);
+                // bounds.extend(position);
+                var marker = new google.maps.Marker({
+                    position: position,
+                    map: map
+                    
+                });
+
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                        infoWindow.setContent(markers.name);
+                        infoWindow.open(map, marker);
+                    }
+                })(marker, i));
+
+///////////Places I Live API call
+
+                var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
         
-        .done(function(response){
-            console.log(response);
-                response.map(function(item) {
-                    var markers = {name:item.name, lat:item.latitude, long:item.longitude, com:item.comment, dir:item.directions};
-                    console.log(markers);
-                    
-                    // Display multiple markers on a map
-                    var infoWindow = new google.maps.InfoWindow(), marker, i;
-                    
-                    // Loop through our array of markers & place each one on the map  
-                   
-                        var position = new google.maps.LatLng(markers.lat, markers.long);
-                        // bounds.extend(position);
-                        var marker = new google.maps.Marker({
-                            position: position,
-                            map: map
+                    $.ajax({
+                    url: 'http://galvanize-cors-proxy.herokuapp.com/' + queryURL,
+                    method: "GET"
+                    }).done(function(safety){
+                        console.log(safety)
+                        var safetyArray = safety.map(function(item){
+                            return item.lqi_category.filter(function(category) {
+                                return category.type === "Safety"
+                            }).map(function(obj) {
+                                return obj.value
+                            })[0]
                             
-                        });
+                        })
+        
+                        var sumSafety = safetyArray.reduce(function(a, item) {
+                            return a + item
+                        }, 0)
+        
+        
+                        var avgSafety = sumSafety / safetyArray.length;
+                        console.log(avgSafety)
 
-                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                            return function() {
-                                infoWindow.setContent(markers.name);
-                                infoWindow.open(map, marker);
-                            }
-                        })(marker, i));
-                       ///////// 
+                        var safetyResponse = safety;
+
+
+
                         var mapResponse = response;
                         
-                        
-                        for (i = 0 ; i < mapResponse.length; i++){
-                        $("table > tbody").append("<tr><td>" + mapResponse[i].name + "</td><td>" + mapResponse[i].street + "</td><td>" + mapResponse[i].accessibility + "</td><td>" + mapResponse[i].unisex + "</td><td>" + safetyResponse[i].comment);
+                        for (i = 0 ; i < markers.length; i++){
+                        $("table > tbody").append("<tr><td>" + markers.name + "</td><td>" + markers.street + "</td><td>" + markers.accessibility + "</td><td>" + markers.uni + "</td><td>" + markers.comment + "</td><td>" + avgSafety + "</tr></td>");
                         }
         
                     });
 
-                    /////////////
+
                         // Allow each marker to have an info window    
                       
 
