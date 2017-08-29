@@ -63,7 +63,7 @@ function initMap() {
    
     var noDetails = "No details available for input: '" + place.name + "'";
     var eerespond = $('<div>');
-    $("#eerespond").append(noDetails);
+    $("#eerespond").text(noDetails);
     // Get the modal
         modal.style.display = 'block'
        
@@ -86,9 +86,11 @@ function initMap() {
         map.setCenter(place.geometry.location);
         map.setZoom(17);  // Why 17? Because it looks good.
     // }
+
     console.log(place.geometry.location);
     // marker.setPosition(place.geometry.location);
     // marker.setVisible(true);
+
 
     // var address = '';
     // if (place.address_components) {
@@ -108,29 +110,77 @@ function initMap() {
 
         
 
+        // var lat = latLong.lat();
+        // var long = latLong.lng();
+        // var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
+        // console.log(queryURL)
+        //     $.ajax({
+        //      url: 'http://galvanize-cors-proxy.herokuapp.com/' + queryURL,
+        //     method: "GET"
+        //     }).done(function(safety){
+        //         console.log(safety)
+        //         safety.map(function(item){
+        //             var avgSafety = Math.mean(item.lqi_category[2].value);
+        //             console.log(avgSafety)
+        //         })
+
+
+        //     });
+        
+
+    
+        
         // var lat = latLong.slice(1, 12);
         // var long = latLong.slice(13, 32);         
         var lat = latLong.lat();
         var long = latLong.lng();
         var queryURL = "https://www.refugerestrooms.org:443/api/v1/restrooms/by_location.json?lat=" + lat + "&lng=" + long;
 
-
         $.ajax({
           url: queryURL,
           method: "GET"
-        }).done(function(response){
-
+        })
+        
+        .done(function(response){
+            console.log(response);
                 response.map(function(item) {
-                    //console.log(item.latitude);
-                    var markers = {
-                        name: item.name, 
-                        lat: item.latitude, 
-                        long: item.longitude
-                    };
+                    var markers = {name:item.name, lat:item.latitude, long:item.longitude};
                     console.log(markers);
-                    return markers;
                     
-                });
+                    // Display multiple markers on a map
+                    var infoWindow = new google.maps.InfoWindow(), marker, i;
+                    
+                    // Loop through our array of markers & place each one on the map  
+                   
+                        var position = new google.maps.LatLng(markers.lat, markers.long);
+                        //bounds.extend(position);
+                        marker = new google.maps.Marker({
+                            position: position,
+                            map: map,
+                            title: markers.name, 
+                            // fillColor: "#4285f4"
+                        });
+                        
+                        // Allow each marker to have an info window    
+                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                            return function() {
+                                infoWindow.setContent(markers.name);
+                                infoWindow.open(map, marker);
+                            }
+                        })(marker, i));
+
+                        // Automatically center the map fitting all markers on the screen
+                       // map.fitBounds(bounds);
+                    
+    
+
+                })
+                
+                // .map(function(item) {
+                //     console.log(response.item.latitude, response.item.longitude);
+                // })
+                
+
         });
         
     });
