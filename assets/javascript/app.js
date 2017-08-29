@@ -244,8 +244,24 @@ $.ajax({
                         var mapResponse = response;
                         
                         for (i = 0 ; i < mapResponse.length; i++){
-                        $("table > tbody").append("<tr><td>" + markers.name + "</td><td>" + markers.add + "</td><td>" + markers.acc + "</td><td>" + markers.uni + "</td><td>" + markers.com + "</td><td>" + avgSafety + "</td></tr>");
+                            var access = ""
+                            if(markers.acc===true){
+                                message = "Yes";
+                            }else{
+                                message = "No";
+                            }
                         }
+                        for (i = 0 ; i < mapResponse.length; i++){
+                            var unis = ""
+                            if(markers.unis===true){
+                                unis = "Yes";
+                            }else{
+                                unis = "No";
+                            }
+                        }
+                        $("table > tbody").append("<tr><td>" + markers.name + "</td><td>" + markers.add + "</td><td>" + access + "</td><td>" + unis + "</td><td>" + markers.com + "</td><td>" + avgSafety + "</td></tr>");
+                        
+                        
         
                     });
 
