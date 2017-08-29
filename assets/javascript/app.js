@@ -110,28 +110,43 @@ function initMap() {
     // infowindow.open(map, marker);
 
         var latLong = place.geometry.location;
-
-        
-
-        // var lat = latLong.lat();
-        // var long = latLong.lng();
-        // var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
-        // console.log(queryURL)
-        //     $.ajax({
-        //      url: 'http://galvanize-cors-proxy.herokuapp.com/' + queryURL,
-        //     method: "GET"
-        //     }).done(function(safety){
-        //         console.log(safety)
-        //         safety.map(function(item){
-        //             var avgSafety = Math.mean(item.lqi_category[2].value);
-        //             console.log(avgSafety)
-        //         })
-
-
-        //     });
-           
         var lat = latLong.lat();
         var long = latLong.lng();
+        
+        var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
+        console.log(queryURL)
+            $.ajax({
+             url: 'http://galvanize-cors-proxy.herokuapp.com/' + queryURL,
+            method: "GET"
+            }).done(function(safety){
+                console.log(safety)
+                var safetyArray = safety.map(function(item){
+                    return item.lqi_category.filter(function(category) {
+                        return category.type === "Safety"
+                    }).map(function(obj) {
+                        return obj.value
+                    })[0]
+                    
+                })
+
+                var sumSafety = safetyArray.reduce(function(a, item) {
+                    return a + item
+                }, 0)
+
+
+                var avgSafety = sumSafety / safetyArray.length;
+                console.log(avgSafety)
+                
+
+
+            });
+        
+
+    
+        
+         
+
+
         var queryURL = "https://www.refugerestrooms.org:443/api/v1/restrooms/by_location.json?lat=" + lat + "&lng=" + long;
 
         $.ajax({
@@ -142,7 +157,7 @@ function initMap() {
         .done(function(response){
             console.log(response);
                 response.map(function(item) {
-                    var markers = {name:item.name, lat:item.latitude, long:item.longitude};
+                    var markers = {name:item.name, lat:item.latitude, long:item.longitude, com:item.comment, dir:item.directions};
                     console.log(markers);
                     
                     // Display multiple markers on a map
@@ -151,12 +166,11 @@ function initMap() {
                     // Loop through our array of markers & place each one on the map  
                    
                         var position = new google.maps.LatLng(markers.lat, markers.long);
-                        //bounds.extend(position);
+                        bounds.extend(position);
                         marker = new google.maps.Marker({
                             position: position,
                             map: map,
-                            title: markers.name, 
-                            // fillColor: "#4285f4"
+                            
                         });
                         
                         // Allow each marker to have an info window    
