@@ -64,7 +64,7 @@ function initMap() {
     //   // pressed the Enter key, or the Place Details request failed.
     
    
-    var noDetails = "No details available for input: '" + place.name + "'";
+    var noDetails = "No details available for input";
     var eerespond = $('<div>');
     $("#eerespond").text(noDetails);
     // Get the modal
@@ -94,6 +94,34 @@ function initMap() {
     // marker.setPosition(place.geometry.location);
     // marker.setVisible(true);
 
+
+//     new Marker({
+//         position: place.geometry.location,
+//         map: map,
+//         title: 'asdfasf',
+//         icon: {
+//             path: SQUARE_PIN,
+//             fillColor: 'blue',
+//             fillOpacity: .5,
+//             strokeColor: '',
+//             strokeWeight: 0
+//         },
+//         map_icon_label: '<span class="map-icon map-icon-bank"></span>'
+
+//         // fillColor: "#4285f4"
+// });
+var placeMarker = new Marker({
+	map: map,
+	position: place.geometry.location,
+	icon: {
+		path: SQUARE_PIN,
+		fillColor: '#00CCBB',
+		fillOpacity: 1,
+		strokeColor: '',
+		strokeWeight: 0
+	},
+	map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
+});
 
     // var address = '';
     // if (place.address_components) {
@@ -166,7 +194,7 @@ function initMap() {
                     // Loop through our array of markers & place each one on the map  
                    
                         var position = new google.maps.LatLng(markers.lat, markers.long);
-                        bounds.extend(position);
+                        // bounds.extend(position);
                         marker = new google.maps.Marker({
                             position: position,
                             map: map,
@@ -217,3 +245,4 @@ function initMap() {
 }
 
 
+initMap()
