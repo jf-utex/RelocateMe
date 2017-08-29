@@ -64,7 +64,9 @@ function initMap() {
     //   // pressed the Enter key, or the Place Details request failed.
     
    
-    var noDetails = "No details available for input: '" + place.name + "'";
+    var noDetails = "No details available, please reset the page and select from the dropdown.";
+    
+    // '" + place.name + "'";
     var eerespond = $('<div>');
     $("#eerespond").text(noDetails);
     // Get the modal
@@ -115,6 +117,7 @@ function initMap() {
         
         var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
         console.log(queryURL)
+
             $.ajax({
              url: 'http://galvanize-cors-proxy.herokuapp.com/' + queryURL,
             method: "GET"
@@ -136,16 +139,17 @@ function initMap() {
 
                 var avgSafety = sumSafety / safetyArray.length;
                 console.log(avgSafety)
+//////////////////
+                var safetyResponse = response;
                 
-
+                
+                for (i = 0 ; i < safetyResponse.length; i++){
+                $("table > tbody").append("<tr><td>" + safetyResponse[i].name + "</td></tr>"}
 
             });
-        
 
-    
-        
-         
 
+//////////////////            
 
         var queryURL = "https://www.refugerestrooms.org:443/api/v1/restrooms/by_location.json?lat=" + lat + "&lng=" + long;
 
@@ -172,7 +176,17 @@ function initMap() {
                             map: map,
                             
                         });
+                       ///////// 
+                        var mapResponse = response;
                         
+                        
+                        for (i = 0 ; i < mapResponse.length; i++){
+                        $("table > tbody").append("<tr><td>" + mapResponse[i].name + "</td><td>" + mapResponse[i].street + "</td><td>" + mapResponse[i].accessibility + "</td><td>" + mapResponse[i].unisex + "</td><td>" + safetyResponse[i].comment);
+                        }
+        
+                    });
+
+                    /////////////
                         // Allow each marker to have an info window    
                         google.maps.event.addListener(marker, 'click', (function(marker, i) {
                             return function() {
