@@ -1,4 +1,3 @@
-
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
@@ -76,10 +75,10 @@ function initMap() {
         // };
 
         // When the user clicks on <span> (x), close the modal
-    
+        
       return;
     }
-    place.name = 0;
+    
     // If the place has a geometry, then present it on a map.
     // if (place.geometry.viewport) {
     //   map.fitBounds(place.geometry.viewport);
@@ -175,6 +174,5 @@ function initMap() {
     //       autocomplete.setOptions({strictBounds: this.checked});
     //     });
 }
-
 
 
