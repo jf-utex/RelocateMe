@@ -60,9 +60,8 @@ function initMap() {
 
 
     if (!place.geometry) {
-    //   // User entered the name of a Place that was not suggested and
+    //   // User entered the name of a Place that was not suggested
     //   // pressed the Enter key, or the Place Details request failed.
-    //   window.alert("No details available for input: '" + place.name + "'");
     
    
     var noDetails = "No details available for input: '" + place.name + "'";
@@ -130,12 +129,7 @@ function initMap() {
 
 
         //     });
-        
-
-    
-        
-        // var lat = latLong.slice(1, 12);
-        // var long = latLong.slice(13, 32);         
+           
         var lat = latLong.lat();
         var long = latLong.lng();
         var queryURL = "https://www.refugerestrooms.org:443/api/v1/restrooms/by_location.json?lat=" + lat + "&lng=" + long;
@@ -175,38 +169,14 @@ function initMap() {
 
                         // Automatically center the map fitting all markers on the screen
                        // map.fitBounds(bounds);
-                    
-    
-
                 })
                 
                 // .map(function(item) {
                 //     console.log(response.item.latitude, response.item.longitude);
                 // })
-                
-
         });
         
     });
-// fir childSnapshot taken from train example
-    // var address=childSnapshot.val().address;
-    // var transportation=childSnapshot.val().transportation;
-    // var safety=childSnapshot.val().safety;
-    // var health=childSnapshot.val().health;
-    // var snl=childSnapshot.val().snl;
-  
- 
-    
-
-
-    // $("tbody").append("<tr><td>" + name + "</td><td>" + street + "</td><td>" + city + "</td><td>" + state + "</td></tr>");
-    
-    //Clear boxes on Submit
-    // $("#name").val("");
-    // $("#street").val("");
-    // $("#city").val("");
-    // $("#state").val("");
-   
    
     // Sets a listener on a radio button to change the filter type on Places
     // Autocomplete.
