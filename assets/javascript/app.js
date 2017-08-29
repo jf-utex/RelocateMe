@@ -1,10 +1,25 @@
-
-
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 function initMap() {
+
+    var modal = document.getElementById('myModal');
+            // Get the button that opens the modal
+    
+      // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
 
 
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -30,7 +45,7 @@ function initMap() {
     // infowindow.setContent(infowindowContent);
     // var marker = new google.maps.Marker({
     //   map: map,
-    //   anchorPoint: new google.maps.Point(0, -29)
+    //   anchorPoint: new google.maps.Point(lat, long)
     // });
 
     autocomplete.addListener('place_changed', function() {
@@ -39,13 +54,31 @@ function initMap() {
         var place = autocomplete.getPlace();
         console.log(place);
 
-    // if (!place.geometry) {
+
+    if (!place.geometry) {
     //   // User entered the name of a Place that was not suggested and
     //   // pressed the Enter key, or the Place Details request failed.
     //   window.alert("No details available for input: '" + place.name + "'");
-    //   return;
-    // }
+    
+   
+    var noDetails = "No details available for input: '" + place.name + "'";
+    var eerespond = $('<div>');
+    $("#eerespond").append(noDetails);
+    // Get the modal
+        modal.style.display = 'block'
+       
+        //When the user clicks anywhere outside of the modal, close it
+        // window.onclick = function(event) {
+        //     if (event.target == modal) {
+        //         modal.style.display = "none";
+        //     }
+        // };
 
+        // When the user clicks on <span> (x), close the modal
+        
+      return;
+    }
+    
     // If the place has a geometry, then present it on a map.
     // if (place.geometry.viewport) {
     //   map.fitBounds(place.geometry.viewport);
@@ -79,7 +112,7 @@ function initMap() {
         // var long = latLong.slice(13, 32);         
         var lat = latLong.lat();
         var long = latLong.lng();
-        var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
+        var queryURL = "https://www.refugerestrooms.org:443/api/v1/restrooms/by_location.json?lat=" + lat + "&lng=" + long;
 
 
         $.ajax({
@@ -87,13 +120,19 @@ function initMap() {
           method: "GET"
         }).done(function(response){
 
-
-
-        
-
+                response.map(function(item) {
+                    //console.log(item.latitude);
+                    var markers = {
+                        name: item.name, 
+                        lat: item.latitude, 
+                        long: item.longitude
+                    };
+                    console.log(markers);
+                    return markers;
+                    
+                });
         });
-   
-
+        
     });
 // fir childSnapshot taken from train example
     // var address=childSnapshot.val().address;
@@ -103,21 +142,17 @@ function initMap() {
     // var snl=childSnapshot.val().snl;
   
  
-    console.log(address);
-    console.log(transportation);
-    console.log(safety);
-    console.log(health);
-    console.log(snl);
+    
 
 
-    $("tbody").append("<tr><td>" + address + "</td><td>" + transportation + "</td><td>" + safety + "</td><td>" + health + "</td><td>" + snl + "</td></tr>");
+    // $("tbody").append("<tr><td>" + name + "</td><td>" + street + "</td><td>" + city + "</td><td>" + state + "</td></tr>");
     
     //Clear boxes on Submit
-    $("#address").val("");
-    $("transportation").val("");
-    $("saftey").val("");
-    $("#health").val("");
-    $("#snl").val("");
+    // $("#name").val("");
+    // $("#street").val("");
+    // $("#city").val("");
+    // $("#state").val("");
+   
    
     // Sets a listener on a radio button to change the filter type on Places
     // Autocomplete.
@@ -139,4 +174,5 @@ function initMap() {
     //       autocomplete.setOptions({strictBounds: this.checked});
     //     });
 }
+
 
