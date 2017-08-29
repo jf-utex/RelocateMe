@@ -59,18 +59,26 @@ function initMap() {
     //   // User entered the name of a Place that was not suggested and
     //   // pressed the Enter key, or the Place Details request failed.
     //   window.alert("No details available for input: '" + place.name + "'");
-
+    
+   
+    var noDetails = "No details available for input: '" + place.name + "'";
+    var eerespond = $('<div>');
+    $("#eerespond").append(noDetails);
     // Get the modal
         modal.style.display = 'block'
-
-        // When the user clicks on the button, open the modal 
-
+       
+        //When the user clicks anywhere outside of the modal, close it
+        // window.onclick = function(event) {
+        //     if (event.target == modal) {
+        //         modal.style.display = "none";
+        //     }
+        // };
 
         // When the user clicks on <span> (x), close the modal
-        
+    
       return;
     }
-
+    place.name = 0;
     // If the place has a geometry, then present it on a map.
     // if (place.geometry.viewport) {
     //   map.fitBounds(place.geometry.viewport);
