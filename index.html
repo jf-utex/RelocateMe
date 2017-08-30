@@ -1,79 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <title>RelocateMe</title>
+    <!--watchout might have to remove later.  -->
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     
+    <title>WhereToGo San Francisco</title>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+
+    <link rel="stylesheet" href="assets/dist/css/map-icons.css"/>
+    
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Robot:300,400,500,700">
 
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">  <!--personal styling-->  
+    
 </head>
 <body>
-    <div class = "container">
-
-        <div class = "container" id = "jumbotronContainer">
+        <div class = "container text-right" id = "jumbotronContainer">
             <div class="jumbotron">
-                <h1>RelocateMe</h1>
-                <p>Enter the employer and city state that you are looking for and we will show you housing, school district, and ammenities in the area.</p>
-            </div>
-        </div>
 
-        <div class = "container" id = "formContainer">
-            <form class="form-inline">
-                <div class="form-group">
-                    <label for="inputName">Company Name</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Enter Company Name">
+                <h1>WhereToGo San Fransisco</h1>
+
+                <br>
+                <br>
+            </div> <!--close div for class Jumbotron-->
+        </div> <!--close div class container and id jumBotron-->
+
+
+    <!-- The Modal -->
+
+    <div id="myModal" class="modal">
+    <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="eerespond"></p>
+        </div> <!-- close for modal container-->
+    </div> <!--close for myModal-->
+
+
+    <div class = "container">  <!--Container for Google HTML-->
+        <div class="pac-card" id="pac-card">
+            <div>      <!--open div for holding search for user input to google -->
+                <div id="title">
+                    Autocomplete search
+                </div> <!--close auto search-->
+            
+                <div id="type-selector" class="pac-controls">
+                    <input type="radio" name="type" id="changetype-all" checked="checked">
+                    <label for="changetype-all">All</label>
+        
+                    <input type="radio" name="type" id="changetype-establishment">
+                    <label for="changetype-establishment">Establishments</label>
+        
+                    <input type="radio" name="type" id="changetype-address">
+                    <label for="changetype-address">Addresses</label>
+
+
+                    <div id="strict-bounds-selector" class="pac-controls">
+                        <input type="checkbox" id="use-strict-bounds" value="">
+                        <label for="use-strict-bounds">Strict Bounds</label>
+                    </div> <!-- close for pac-controls-->
+        
+                    <button type="button" class="btn btn-info" onClick="refreshPage()">Reset Search</button>
+            
+
+                <div id="pac-container">
+                    <input id="pac-input" type="text" placeholder="Enter a location">
                 </div>
-                <div class="form-group">
-                    <label for="inputCityState">City, ST</label>
-                    <input type="text" class="form-control" id="inputCityState" placeholder="City, ST">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-        </div>
+            </div>  <!-- close div for holding search for user input to google-->
 
-        <div class = "container" id = "companyListContainer">
-            <ul class="list-group">
-            <!-- // code for companyListItem below-->
-            <!-- <li class="list-group-item" id = "companyListItem">example</li> -->
-            
-            </ul>
-        </div>
+            <div id="map"></div>
 
-        <div class = "container" id = "mapViewContainer">
-            <div class="embed-responsive embed-responsive-16by9">
-                 <iframe class="embed-responsive-item" src="http://via.placeholder.com/400x400"> 
-<!-- alt = http://via.placeholder.com/4x3 -->
-                </iframe>
-            </div>
-        </div>
-         --><div id="map"></div>
+            <div id="infowindow-content">
+                <img src="" width="16" height="16" id="place-icon">
+                <span id="place-name"  class="title"></span><br>
+                <span id="place-address"></span>
+            </div> <!-- close infowindow-content-->
 
-            
-        <div class = "container" id = "housingListContainer">
-            <ul class="list-group">
-            <!-- // code for housingListItem below     -->
-            <!-- <li class="list-group-item" id = "housingListItem">example</li> -->
-            
-            </ul>
-        </div>
-    
-    </div>
-    <script type="text/javascript" src = "assets/javascript/app.js">
-    </script>
-    <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+        </div> <!-- close div for pac-card" id="pac-card"-->
+    </div> <!--close div for class container  to hold Google HTML--> 
+
+
+    <br>
+         <!-- Panel for PlaceILive & Refuge Bathroom Data    -->
+    <div class = "output_container">
+        <div class="panel panel-primary"> 
+            <div class="panel-body">
+                <table class="table">
+
+                    <thead>
+                        <tr>
+                        <th>Name</th>
+                        <th>Street</th>
+                        <th>Accessible</th>
+                        <th>Unisex</th>
+                        <th>Comment</th>
+                        <th>Safety</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                    </tbody>
+                </table> <!--closes primary panel for ratings output-->
+            </div> 
+        </div>  <!--close panel-primary to hold return-->
+    </div> <!-- close div for container holding output-->
    
     
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsa_wxn57WwF3Wr07LCs9jmoCCBvKlRaU&libraries=places"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsa_wxn57WwF3Wr07LCs9jmoCCBvKlRaU&callback=initMap"
-    ></script>
+    <script src="assets/dist/js/map-icons.min.js"></script>  
+    <script type="text/javascript" src = "assets/javascript/app.js"></script>
+    
+    
+        
+
+
+
 </body>
 </html>
+
+                            
