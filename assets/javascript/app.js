@@ -260,7 +260,7 @@ $.ajax({
                 var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
         
                     $.ajax({
-                    url: 'http://galvanize-cors-proxy.herokuapp.com/' + queryURL,
+                    url: 'https://galvanize-cors-proxy.herokuapp.com/' + queryURL,
                     method: "GET"
                     }).done(function(safety){
                         console.log(safety)
