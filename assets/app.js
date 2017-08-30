@@ -70,7 +70,7 @@ function initMap() {
     //   // pressed the Enter key, or the Place Details request failed.
     //   window.alert("No details available for input: '" + place.name + "'");
     
-    var noDetails = "No details available for input";
+    var noDetails =  "No details available for input";
     var eerespond = $('<div>');
     $("#eerespond").text(noDetails);
 
@@ -199,9 +199,14 @@ function initMap() {
                         })(marker, i));
 
                         // Automatically center the map fitting all markers on the screen
-                       // map.fitBounds(bounds);
+                       map.fitBounds(bounds);
                     
-    
+            var mapResponse = response;
+
+
+            for (i = 0 ; i < mapResponse.length; i++){
+            $("table > tbody").append("<tr><td>" + mapResponse[i].name + "</td><td>" + mapResponse[i].street + "</td><td>" + mapResponse[i].city + "</td><td>" + mapResponse[i].state + "</td><td>" + mapResponse[i].comment );
+        }
 
                 })
 

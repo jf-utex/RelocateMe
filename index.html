@@ -13,19 +13,18 @@
 
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
 
-
+    <link rel="stylesheet" href="assets/dist/css/map-icons.css"/>
+    
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
-    <link rel="stylesheet" href="assets/dist/css/map-icons.min.css"/>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Latest compiled and minified JavaScript -->
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
-    
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Robot:300,400,500,700">
 
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">  <!--personal styling-->  
-    <script src="assets/dist/js/map-icons.min.js"></script>  
-
+    
 </head>
 <body>
         <div class = "container text-right" id = "jumbotronContainer">
@@ -96,7 +95,7 @@
     <br>
          <!-- Panel for PlaceILive & Refuge Bathroom Data    -->
     <div class = "output_container">
-        <div class="panel panel-primary"> <!--to hold train schedule output-->
+        <div class="panel panel-primary"> 
             <div class="panel-body">
                 <table class="table">
 
@@ -104,8 +103,10 @@
                         <tr>
                         <th>Name</th>
                         <th>Street</th>
+                        <th>Accessible</th>
+                        <th>Unisex</th>
+                        <th>Comment</th>
                         <th>Safety</th>
-                        <th>Transportation</th>
                         </tr>
                     </thead>
 
@@ -117,12 +118,14 @@
         </div>  <!--close panel-primary to hold return-->
     </div> <!-- close div for container holding output-->
    
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsa_wxn57WwF3Wr07LCs9jmoCCBvKlRaU&libraries=places&callback=initMap"
-    async defer></script>
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsa_wxn57WwF3Wr07LCs9jmoCCBvKlRaU&libraries=places"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    
+    <script src="assets/dist/js/map-icons.min.js"></script>  
     <script type="text/javascript" src = "assets/javascript/app.js"></script>
+    
+    
         
 
 
@@ -131,4 +134,3 @@
 </html>
 
                             
-
