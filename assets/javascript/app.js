@@ -65,7 +65,7 @@ function initMap() {
     
    
 
-    var noDetails = "No details available for input";
+    var noDetails = "No details available for input.  Please reset your search and choose from drop down addresses.";
     var eerespond = $('<div>');
     $("#eerespond").text(noDetails);
     // Get the modal
