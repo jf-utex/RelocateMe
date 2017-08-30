@@ -9,9 +9,9 @@ function refreshPage(){
 function initMap() {
 
     var modal = document.getElementById('myModal');
-            // Get the button that opens the modal
+    // Get the button that opens the modal
     
-      // Get the <span> element that closes the modal
+    // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
     span.onclick = function() {
@@ -45,6 +45,9 @@ function initMap() {
     // bounds option in the request.
     autocomplete.bindTo('bounds', map);
 
+    ////Google Future Development
+
+
     // var infowindow = new google.maps.InfoWindow();
     // var infowindowContent = document.getElementById('infowindow-content');
     // infowindow.setContent(infowindowContent);
@@ -57,15 +60,14 @@ function initMap() {
     // infowindow.close();
     // marker.setVisible(false);
         var place = autocomplete.getPlace();
-        console.log(place);
 
 
     if (!place.geometry) {
-    //   // User entered the name of a Place that was not suggested
-    //   // pressed the Enter key, or the Place Details request failed.
-    
-   
 
+
+    //   // User entered the name of a Place that was not suggested pressed the Enter key, or the Place Details request failed.
+
+    
 
     var noDetails = "No details available for input.  Please reset your search and choose from drop down addresses.";
 
@@ -73,15 +75,7 @@ function initMap() {
     $("#eerespond").text(noDetails);
     // Get the modal
         modal.style.display = 'block'
-       
-        //When the user clicks anywhere outside of the modal, close it
-        // window.onclick = function(event) {
-        //     if (event.target == modal) {
-        //         modal.style.display = "none";
-        //     }
-        // };
 
-        // When the user clicks on <span> (x), close the modal
         
       return;
     }
@@ -94,11 +88,10 @@ function initMap() {
         map.setZoom(17);  // Why 17? Because it looks good.
     // }
 
-    console.log(place.geometry.location);
     // marker.setPosition(place.geometry.location);
     // marker.setVisible(true);
 
-
+///for future development
 
     //     new Marker({
     //         position: place.geometry.location,
@@ -149,35 +142,17 @@ var latLong = place.geometry.location;
 var lat = latLong.lat();
 var long = latLong.lng();
         
-//         var queryURL = "https://api.placeilive.com/v1/houses/search?ll=" + lat + "," + long;
-//         console.log(queryURL)
-
-//             $.ajax({
-//              url: 'http://galvanize-cors-proxy.herokuapp.com/' + queryURL,
-//             method: "GET"
-//             }).done(function(safety){
-//                 console.log(safety)
-//                 var safetyArray = safety.map(function(item){
-//                     return item.lqi_category.filter(function(category) {
-//                         return category.type === "Safety"
-//                     }).map(function(obj) {
-//                         return obj.value
-//                     })[0]
-                    
-//                 })
-
 
 //                 var sumSafety = safetyArray.reduce(function(a, item) {
 //                     return a + item
 //                 }, 0)
 
+//                 var avgSafety = sumSafety / safetyArray.length;
+//            
+
 
 //                 var avgSafety = sumSafety / safetyArray.length;
-//                 console.log(avgSafety)
-
-
-//                 var avgSafety = sumSafety / safetyArray.length;
-//                 console.log(avgSafety)
+//               
 
 //                 var safetyResponse = safety;
                 
@@ -198,11 +173,9 @@ $.ajax({
 })
 
 .done(function(response){
-    console.log(response);
         response.map(function(item) {
             var markers = {name:item.name, add:item.street, lat:item.latitude, long:item.longitude, com:item.comment, acc:item.accessible, uni:item.unisex, dir:item.directions};
-            console.log(markers);
-            
+
             // Display multiple markers on a map
             var infoWindow = new google.maps.InfoWindow(), marker, i;
             
@@ -236,17 +209,12 @@ $.ajax({
                     google.maps.event.removeListener(boundsListener);
                 });
                 
-
-            
                 var position = new google.maps.LatLng(markers.lat, markers.long);
                 // bounds.extend(position);
                 var marker = new google.maps.Marker({
                     position: position,
                     map: map
                     });
-
-                             
-                
 
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
@@ -263,7 +231,7 @@ $.ajax({
                     url: 'https://galvanize-cors-proxy.herokuapp.com/' + queryURL,
                     method: "GET"
                     }).done(function(safety){
-                        console.log(safety)
+
                         var safetyArray = safety.map(function(item){
                             return item.lqi_category.filter(function(category) {
                                 return category.type === "Safety"
@@ -279,7 +247,6 @@ $.ajax({
         
         
                         var avgSafety = sumSafety / safetyArray.length;
-                        console.log(avgSafety)
 
                         var safetyResponse = safety;
 
@@ -292,8 +259,7 @@ $.ajax({
 
             // }
 
-
-
+////////boolean for access and unisex response
 
                         var mapResponse = response;
                         
@@ -315,47 +281,15 @@ $.ajax({
                             }
                         }
                         $("table > tbody").append("<tr><td>" + markers.name + "</td><td>" + markers.add + "</td><td>" + message + "</td><td>" + unis + "</td><td>" + markers.com + "</td><td>" + avgSafety + "%" + "</td></tr>");
-                        
-                        
-                        console.log(message);
 
                     });
 
-
-                        // Allow each marker to have an info window    
-                      
-
-                        // Automatically center the map fitting all markers on the screen
-                       // map.fitBounds(bounds);
                 })
-                
-                
+                  
         });
         
     });
 }
-   
-    // Sets a listener on a radio button to change the filter type on Places
-    // Autocomplete.
-    // function setupClickListener(id, types) {
-    //   var radioButton = document.getElementById(id);
-    //   radioButton.addEventListener('click', function() {
-    //     autocomplete.setTypes(types);
-    //   });
-    // }
-
-    // setupClickListener('changetype-all', []);
-    // setupClickListener('changetype-address', ['address']);
-    // setupClickListener('changetype-establishment', ['establishment']);
-    // setupClickListener('changetype-geocode', ['geocode']);
-
-    // document.getElementById('use-strict-bounds')
-    //     .addEventListener('click', function() {
-    //       console.log('Checkbox clicked! New state=' + this.checked);
-    //       autocomplete.setOptions({strictBounds: this.checked});
-    //     });
-
-
 
 
 initMap()
