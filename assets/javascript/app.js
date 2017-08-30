@@ -66,7 +66,9 @@ function initMap() {
     
    
 
+
     var noDetails = "No details available for input.  Please reset your search and choose from drop down addresses.";
+
     var eerespond = $('<div>');
     $("#eerespond").text(noDetails);
     // Get the modal
@@ -95,6 +97,7 @@ function initMap() {
     console.log(place.geometry.location);
     // marker.setPosition(place.geometry.location);
     // marker.setVisible(true);
+
 
 
     //     new Marker({
@@ -126,6 +129,7 @@ function initMap() {
         
         // map_icon_label: '<span class="map-icon map-icon-wheelchair"></span>'
     });
+
 
     // var address = '';
     // if (place.address_components) {
@@ -162,9 +166,14 @@ var long = latLong.lng();
                     
 //                 })
 
+
 //                 var sumSafety = safetyArray.reduce(function(a, item) {
 //                     return a + item
 //                 }, 0)
+
+
+//                 var avgSafety = sumSafety / safetyArray.length;
+//                 console.log(avgSafety)
 
 
 //                 var avgSafety = sumSafety / safetyArray.length;
@@ -198,14 +207,46 @@ $.ajax({
             var infoWindow = new google.maps.InfoWindow(), marker, i;
             
             // Loop through our array of markers & place each one on the map  
+
+                 // Loop through our array of markers & place each one on the map  
+                for( i = 0; i < markers.length; i++ ) {
+                    var position = new google.maps.LatLng(markers[i][1], markers[i][2], markers[i][3], markers[i][4], markers[i][5],  markers[i][6], markers[i][7], markers[i][8], markers[i][9], markers[i][10]);
+                    bounds.extend(position);
+                    marker = new google.maps.Marker({
+                        position: position,
+                        map: map,
+                        title: markers[i][0]
+                    });
+                    
+                    // Allow each marker to have an info window    
+                    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                        return function() {
+                            infoWindow.setContent(infoWindowContent[i][0]);
+                            infoWindow.open(map, marker);
+                        }
+                    })(marker, i));
+
+                    // Automatically center the map fitting all markers on the screen
+                    map.fitBounds(bounds);
+                }
+
+                // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+                var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+                    this.setZoom(14);
+                    google.maps.event.removeListener(boundsListener);
+                });
+                
+
             
                 var position = new google.maps.LatLng(markers.lat, markers.long);
                 // bounds.extend(position);
                 var marker = new google.maps.Marker({
                     position: position,
                     map: map
-                    
-                });
+                    });
+
+                             
+                
 
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
@@ -243,6 +284,16 @@ $.ajax({
                         var safetyResponse = safety;
 
 
+//                 var safetyResponse = safety;
+                
+                
+                // for (i = 0 ; i < safetyResponse.length; i++){
+                // $("table > tbody").append("<tr><td>" + safetyResponse[i].name + "</td></tr>")
+
+            // }
+
+
+
 
                         var mapResponse = response;
                         
@@ -252,6 +303,7 @@ $.ajax({
                                 message = "Yes";
                             }else{
                                 message = "No";
+
                             }
                         }
                         for (i = 0 ; i < mapResponse.length; i++){
@@ -262,10 +314,11 @@ $.ajax({
                                 unis = "No";
                             }
                         }
-                        $("table > tbody").append("<tr><td>" + markers.name + "</td><td>" + markers.add + "</td><td>" + access + "</td><td>" + unis + "</td><td>" + markers.com + "</td><td>" + avgSafety + "%" + "</td></tr>");
+                        $("table > tbody").append("<tr><td>" + markers.name + "</td><td>" + markers.add + "</td><td>" + message + "</td><td>" + unis + "</td><td>" + markers.com + "</td><td>" + avgSafety + "%" + "</td></tr>");
                         
                         
-        
+                        console.log(message);
+
                     });
 
 
