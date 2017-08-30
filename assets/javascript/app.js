@@ -28,6 +28,7 @@ function initMap() {
 
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 37.773972, lng: -122.431297},
+
         zoom: 12
     });
     //var card = document.getElementById('pac-card');
@@ -65,7 +66,9 @@ function initMap() {
     
    
 
-    var noDetails = "No details available for input";
+
+    var noDetails = "No details available for input.  Please reset your search and choose from drop down addresses.";
+
     var eerespond = $('<div>');
     $("#eerespond").text(noDetails);
     // Get the modal
@@ -96,33 +99,37 @@ function initMap() {
     // marker.setVisible(true);
 
 
-//     new Marker({
-//         position: place.geometry.location,
-//         map: map,
-//         title: 'asdfasf',
-//         icon: {
-//             path: SQUARE_PIN,
-//             fillColor: 'blue',
-//             fillOpacity: .5,
-//             strokeColor: '',
-//             strokeWeight: 0
-//         },
-//         map_icon_label: '<span class="map-icon map-icon-bank"></span>'
 
-//         // fillColor: "#4285f4"
-// });
-var placeMarker = new Marker({
-    map: map,
-    position: place.geometry.location,
-    icon: {
-        path: SQUARE_PIN,
-        fillColor: '#00CCBB',
-        fillOpacity: 1,
-        strokeColor: '',
-        strokeWeight: 0
-    },
-    map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
-});
+    //     new Marker({
+    //         position: place.geometry.location,
+    //         map: map,
+    //         title: 'asdfasf',
+    //         icon: {
+    //             path: SQUARE_PIN,
+    //             fillColor: 'blue',
+    //             fillOpacity: .5,
+    //             strokeColor: '',
+    //             strokeWeight: 0
+    //         },
+    //         map_icon_label: '<span class="map-icon map-icon-bank"></span>'
+
+    //         // fillColor: "#4285f4"
+    // });
+    var marker = new Marker({
+        map: map,
+        position: place.geometry.location,
+        icon: {
+            path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+            scale: 5
+            },
+            draggable: true,
+            map: map
+         
+            
+        
+        // map_icon_label: '<span class="map-icon map-icon-wheelchair"></span>'
+    });
+
 
     // var address = '';
     // if (place.address_components) {
@@ -159,9 +166,14 @@ var long = latLong.lng();
                     
 //                 })
 
+
 //                 var sumSafety = safetyArray.reduce(function(a, item) {
 //                     return a + item
 //                 }, 0)
+
+
+//                 var avgSafety = sumSafety / safetyArray.length;
+//                 console.log(avgSafety)
 
 
 //                 var avgSafety = sumSafety / safetyArray.length;
@@ -272,6 +284,16 @@ $.ajax({
                         var safetyResponse = safety;
 
 
+//                 var safetyResponse = safety;
+                
+                
+                // for (i = 0 ; i < safetyResponse.length; i++){
+                // $("table > tbody").append("<tr><td>" + safetyResponse[i].name + "</td></tr>")
+
+            // }
+
+
+
 
                         var mapResponse = response;
                         
@@ -281,6 +303,7 @@ $.ajax({
                                 message = "Yes";
                             }else{
                                 message = "No";
+
                             }
                         }
                         for (i = 0 ; i < mapResponse.length; i++){
@@ -295,6 +318,7 @@ $.ajax({
                         
                         
                         console.log(message);
+
                     });
 
 
@@ -305,9 +329,7 @@ $.ajax({
                        // map.fitBounds(bounds);
                 })
                 
-                // .map(function(item) {
-                //     console.log(response.item.latitude, response.item.longitude);
-                // })
+                
         });
         
     });

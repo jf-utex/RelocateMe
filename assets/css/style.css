@@ -29,15 +29,14 @@ html, body {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  /* background-color: rgb(0,0,0); 
-  Fallback color */
-  background-color: rgba(189, 12, 15, 0.50); 
-  /* Black w/ opacity */
+  background-color: rgba(189, 12, 15, 0.70); 
 }
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: #fefefe;
+  background-color: white;
+  font-family: Palatino, sans-serif;
+  font-size: 30px;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
@@ -67,7 +66,7 @@ html, body {
 /* Optional: Makes the sample page fill the window. */
 
 #description {
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 15px;
   font-weight: 300;
 }
@@ -92,7 +91,7 @@ html, body {
   outline: none;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   background-color: #fff;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
 }
 
 #pac-container {
@@ -106,14 +105,14 @@ html, body {
 }
 
 .pac-controls label {
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 13px;
   font-weight: 300;
 }
 
 #pac-input {
   background-color: #fff;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-size: 15px;
   font-weight: 300;
   margin-left: 12px;
