@@ -195,14 +195,46 @@ $.ajax({
             var infoWindow = new google.maps.InfoWindow(), marker, i;
             
             // Loop through our array of markers & place each one on the map  
+
+                 // Loop through our array of markers & place each one on the map  
+                for( i = 0; i < markers.length; i++ ) {
+                    var position = new google.maps.LatLng(markers[i][1], markers[i][2], markers[i][3], markers[i][4], markers[i][5],  markers[i][6], markers[i][7], markers[i][8], markers[i][9], markers[i][10]);
+                    bounds.extend(position);
+                    marker = new google.maps.Marker({
+                        position: position,
+                        map: map,
+                        title: markers[i][0]
+                    });
+                    
+                    // Allow each marker to have an info window    
+                    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                        return function() {
+                            infoWindow.setContent(infoWindowContent[i][0]);
+                            infoWindow.open(map, marker);
+                        }
+                    })(marker, i));
+
+                    // Automatically center the map fitting all markers on the screen
+                    map.fitBounds(bounds);
+                }
+
+                // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+                var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+                    this.setZoom(14);
+                    google.maps.event.removeListener(boundsListener);
+                });
+                
+
             
                 var position = new google.maps.LatLng(markers.lat, markers.long);
                 // bounds.extend(position);
                 var marker = new google.maps.Marker({
                     position: position,
                     map: map
-                    
-                });
+                    });
+
+                             
+                
 
                 google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
