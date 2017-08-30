@@ -27,8 +27,12 @@ function initMap() {
 
 
     var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 37.773972, lng: -122.431297},
-    zoom: 12
+        center: {lat: 37.773972, lng: -122.431297},
+        styles: [
+            {stylers: [{ visibility: 'simplified' }]},
+            {elementType: 'labels'}
+        ],
+        zoom: 12
     });
     //var card = document.getElementById('pac-card');
     var input = document.getElementById('pac-input');
@@ -95,33 +99,35 @@ function initMap() {
     // marker.setVisible(true);
 
 
-//     new Marker({
-//         position: place.geometry.location,
-//         map: map,
-//         title: 'asdfasf',
-//         icon: {
-//             path: SQUARE_PIN,
-//             fillColor: 'blue',
-//             fillOpacity: .5,
-//             strokeColor: '',
-//             strokeWeight: 0
-//         },
-//         map_icon_label: '<span class="map-icon map-icon-bank"></span>'
+    //     new Marker({
+    //         position: place.geometry.location,
+    //         map: map,
+    //         title: 'asdfasf',
+    //         icon: {
+    //             path: SQUARE_PIN,
+    //             fillColor: 'blue',
+    //             fillOpacity: .5,
+    //             strokeColor: '',
+    //             strokeWeight: 0
+    //         },
+    //         map_icon_label: '<span class="map-icon map-icon-bank"></span>'
 
-//         // fillColor: "#4285f4"
-// });
-var placeMarker = new Marker({
-	map: map,
-	position: place.geometry.location,
-	icon: {
-		path: SQUARE_PIN,
-		fillColor: '#00CCBB',
-		fillOpacity: 1,
-		strokeColor: '',
-		strokeWeight: 0
-	},
-	map_icon_label: '<span class="map-icon map-icon-point-of-interest"></span>'
-});
+    //         // fillColor: "#4285f4"
+    // });
+    var marker = new Marker({
+        map: map,
+        position: place.geometry.location,
+        icon: {
+            path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+            scale: 5
+            },
+            draggable: true,
+            map: map
+         
+            
+        
+        // map_icon_label: '<span class="map-icon map-icon-wheelchair"></span>'
+    });
 
     // var address = '';
     // if (place.address_components) {
@@ -213,9 +219,7 @@ var placeMarker = new Marker({
                        // map.fitBounds(bounds);
                 })
                 
-                // .map(function(item) {
-                //     console.log(response.item.latitude, response.item.longitude);
-                // })
+                
         });
         
     });
