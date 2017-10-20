@@ -1,6 +1,6 @@
 # Where To Go - San Francisco
 
-This is a group project with the goal of working with at least two API's, AJAX, HTML, CSS Framework and JavaScript.
+A group project working with two API's, AJAX, HTML, CSS Framework and JavaScript.
 
 We used the Google Maps, Refuge Restrooms (a gender neutral, accessable API for the San Francisco Area) and PlacesILive API's.
 
