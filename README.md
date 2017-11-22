@@ -2,7 +2,7 @@
 
 A group project working with two API's, AJAX, HTML, CSS Framework and JavaScript.
 
-We used the Google Maps, Refuge Restrooms (a gender neutral, accessable API for the San Francisco Area) and PlacesILive API's.
+We used the Google Maps, Refuge Restrooms (a gender neutral, accessible API for the San Francisco Area) and PlacesILive API's.
 
 A modal was employed to direct the user to appropriate data entry in the search box. The search must be within the San Francisco region and be selected from the completed addresses generated in the drop down menu.
 
